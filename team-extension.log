@@ -1,0 +1,32 @@
+2017-10-13T06:10:32.764Z - info:   [02068] *** FOLDER: d:\www\cross-border ***
+2017-10-13T06:10:32.766Z - info:   [02068] VSTSVSCode/1.122.0 (VSCode 1.17.1; Windows_NT 6.1.7601; Node 7.9.0)
+2017-10-13T06:10:32.766Z - debug:  [02068] Looking for an External Context at d:\www\cross-border
+2017-10-13T06:10:32.766Z - debug:  [02068] No External Context at d:\www\cross-border
+2017-10-13T06:10:32.771Z - debug:  [02068] Looking for TFVC repository at d:\www\cross-border
+2017-10-13T06:10:32.771Z - debug:  [02068] TFVC Creating Tfvc object with localPath='undefined'
+2017-10-13T06:10:32.771Z - debug:  [02068] Using TFS proxy: 
+2017-10-13T06:10:32.771Z - debug:  [02068] TFVC Retrieved from settings; localPath=''
+2017-10-13T06:10:32.772Z - warn:   [02068] TFVC Couldn't find where the TF command lives on disk.
+2017-10-13T06:10:32.774Z - error:  [02068] The path to the TFVC command line (including filename) was not found in the user settings. Please set this value (tfvc.location) and try again.
+2017-10-13T06:11:56.855Z - debug:  [02068] Reinitializing due to onDidChangeConfiguration
+2017-10-13T06:11:56.856Z - debug:  [02068] Polling interval value (minutes): 5
+2017-10-13T06:11:56.858Z - info:   [02068] *** FOLDER: d:\www\cross-border ***
+2017-10-13T06:11:56.858Z - info:   [02068] VSTSVSCode/1.122.0 (VSCode 1.17.1; Windows_NT 6.1.7601; Node 7.9.0)
+2017-10-13T06:11:56.858Z - debug:  [02068] Looking for an External Context at d:\www\cross-border
+2017-10-13T06:11:56.858Z - debug:  [02068] No External Context at d:\www\cross-border
+2017-10-13T06:11:56.860Z - debug:  [02068] Looking for TFVC repository at d:\www\cross-border
+2017-10-13T06:11:56.860Z - debug:  [02068] TFVC Creating Tfvc object with localPath='undefined'
+2017-10-13T06:11:56.860Z - debug:  [02068] Using TFS proxy: 
+2017-10-13T06:11:56.860Z - debug:  [02068] TFVC Retrieved from settings; localPath=''
+2017-10-13T06:11:56.860Z - warn:   [02068] TFVC Couldn't find where the TF command lives on disk.
+2017-10-13T06:11:56.861Z - error:  [02068] The path to the TFVC command line (including filename) was not found in the user settings. Please set this value (tfvc.location) and try again.
+2017-10-13T06:13:26.630Z - info:   [07036] *** FOLDER: d:\www\cross-border ***
+2017-10-13T06:13:26.632Z - info:   [07036] VSTSVSCode/1.122.0 (VSCode 1.17.1; Windows_NT 6.1.7601; Node 7.9.0)
+2017-10-13T06:13:26.633Z - debug:  [07036] Looking for an External Context at d:\www\cross-border
+2017-10-13T06:13:26.633Z - debug:  [07036] No External Context at d:\www\cross-border
+2017-10-13T06:13:26.634Z - debug:  [07036] Looking for TFVC repository at d:\www\cross-border
+2017-10-13T06:13:26.634Z - debug:  [07036] TFVC Creating Tfvc object with localPath='undefined'
+2017-10-13T06:13:26.635Z - debug:  [07036] Using TFS proxy: 
+2017-10-13T06:13:26.635Z - debug:  [07036] TFVC Retrieved from settings; localPath=''
+2017-10-13T06:13:26.635Z - warn:   [07036] TFVC Couldn't find where the TF command lives on disk.
+2017-10-13T06:13:26.635Z - error:  [07036] The path to the TFVC command line (including filename) was not found in the user settings. Please set this value (tfvc.location) and try again.

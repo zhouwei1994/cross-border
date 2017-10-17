@@ -1,0 +1,285 @@
+.goods-type-detail {
+    padding: 10px 32px;
+    font-size: 18px;
+    color: #666;
+    background: #fff;
+    max-width: 1200px;
+    .twoLevel {
+        margin-bottom: 10px;
+    }
+    .type-title {
+        font-size: 15px;
+        color: #171717;
+        border-bottom: 1px solid #f1f1f1;
+        color: #333;
+    }
+    .type-content {
+        @include clear;
+        div {
+            text-align: center;
+            font-size: 14px;
+            float: left;
+            color: #666;
+        }
+        div:nth-child(1) {
+            text-align: left;
+        }
+    }
+}
+.c-o-hover:hover {
+  color: #ff681c !important;
+}
+.goods-type-item {
+    width: 272px;
+    background-color: #fffcfa;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    position: relative;
+    &>li {
+        padding: 15px 0px;
+        width: 100%;
+        font-size: 15px;
+        color: #171717;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        border-right-width: 0;
+        &>div:first-child {
+            margin-left: 36px;
+            height: 25px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% auto;
+        }
+        &>div:nth-child(2) {
+            flex: 1;
+            width: 100%;
+            margin: 0 24px;
+            height: 25px;
+            line-height: 25px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        &>div:nth-child(3) {
+            margin-right: 36px;
+            height: 25px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% auto;
+        }
+    }
+    &>li:hover {
+        background: #FFF;
+        .goods-type-detail {
+            display: block;
+        }
+        >div:nth-child(2)  {
+          color: #ff681c;
+        }
+        .ic-right {
+          background-image: url(../../img/index/home_ic_arrow_selected.png);
+        }
+    }
+    .goods-type-detail {
+        min-height: 549px;
+        width: 928px;
+        position: absolute;
+        display: none;
+        // border: 2px solid $main-color;
+        border-width: 0 2px 2px;
+        top: 0;
+        left: 100%;
+        z-index: 11;
+        .type-title {
+          padding: 10px 0px;
+        }
+        .type-content {
+            display: flex;
+            flex-wrap: wrap;
+            div {
+                width: 25%;
+                padding: 10px 10px 10px 0;
+                text-align: left;
+                font-size: 14px;
+                @include text-overflow;
+            }
+        }
+    }
+}
+@mixin itemClass($color) {
+    color: $color;
+    border-bottom: 4px solid $color;
+}
+
+@mixin itemClass($color) {
+    color: $color;
+    border-bottom: 4px solid $color;
+}
+
+.ic-goods-type {
+    @include bindicBg(22px, 22px);
+}
+
+.ic-dress {
+    &.ic-goods-type {
+        background: url(../../img/index/sy_icon_sydpfl_shishangnvzhuang.png);
+    }
+    .title {
+        @include itemClass(#ff6363);
+    }
+    &+.desc {
+        color: #ff6363;
+    }
+    &.tag:hover {
+        background-image: url(../../img/index/dress.png);
+    }
+}
+
+.ic-men {
+    &.ic-goods-type {
+        background: url(../../img/index/sy_icon_sydpfl_liuxingnanzhuang.png);
+    }
+    .title {
+        @include itemClass(#3eabea);
+    }
+    &+.desc {
+        color: #3eabea;
+    }
+    &.tag:hover {
+        background-image: url(../../img/index/men.png);
+    }
+}
+
+.ic-cases {
+    &.ic-goods-type {
+        background: url(../../img/index/sy_icon_sydpfl_xiangbaopeishi.png);
+    }
+    .title {
+        @include itemClass(#f8a23d);
+    }
+    &+.desc {
+        color: #f8a23d;
+    }
+    &.tag:hover {
+        background-image: url(../../img/index/cases.png);
+    }
+}
+
+.ic-shoe {
+    &.ic-goods-type {
+        background: url(../../img/index/sy_icon_sydpfl_chaoliuxiezi.png);
+    }
+    .title {
+        @include itemClass(#779f24);
+    }
+    &+.desc {
+        color: #779f24;
+    }
+    &.tag:hover {
+        background-image: url(../../img/index/shoe.png);
+    }
+}
+
+.ic-home-use {
+    &.ic-goods-type {
+        background: url(../../img/index/sy_icon_sydpfl_jujiashenghuo.png);
+    }
+    .title {
+        @include itemClass(#5a77ee);
+    }
+    &+.desc {
+        color: #5a77ee;
+    }
+    &.tag:hover {
+        background-image: url(../../img/index/home-use.png);
+    }
+}
+
+.ic-beauty-makeup {
+    &.ic-goods-type {
+        background: url(../../img/index/sy_icon_sydpfl_jingxuanmeizhuang.png);
+    }
+    .title {
+        @include itemClass(#ff681c);
+    }
+    &+.desc {
+        color: #ff681c;
+    }
+    &.tag:hover {
+        background-image: url(../../img/index/beauty-makeup.png);
+    }
+}
+
+.ic-luxury {
+    &.ic-goods-type {
+        background: url(../../img/index/sy_icon_sydpfl_zhubaomingbiao.png);
+    }
+    .title {
+        @include itemClass(#da62f0);
+    }
+    &+.desc {
+        color: #da62f0;
+    }
+    &.tag:hover {
+        background-image: url(../../img/index/luxury.png);
+    }
+}
+
+.ic-outdoor-goods {
+    &.ic-goods-type {
+        background: url(../../img/index/sy_icon_sydpfl_huwaiyongping.png);
+    }
+    .title {
+        @include itemClass(#36bea9);
+    }
+    &+.desc {
+        color: #36bea9;
+    }
+    &.tag:hover {
+        background-image: url(../../img/index/outdoor-goods.png);
+    }
+}
+
+.ic-digital-device {
+    &.ic-goods-type {
+        background: url(../../img/index/sy_icon_sydpfl_shumashebei.png);
+    }
+    .title {
+        @include itemClass(#3a8adb);
+    }
+    &+.desc {
+        color: #3a8adb;
+    }
+    &.tag:hover {
+        background-image: url(../../img/index/digital-device.png);
+    }
+}
+
+.ic-mam {
+    &.ic-goods-type {
+        background: url(../../img/index/sy_icon_sydpfl_muyingyongping.png);
+    }
+    .title {
+        @include itemClass(#ff73b4);
+    }
+    &+.desc {
+        color: #ff73b4;
+    }
+    &.tag:hover {
+        background-image: url(../../img/index/mam.png);
+    }
+}
+
+.ic-right {
+    @include bindicBg(9px, 15px);
+    background-image: url(../../img/index/home_ic_arrow_disselected.png);
+}
+
+.ic-top {
+    @include bindicBg(9px, 15px);
+    background: url(../../img/index/sy_icon_syspfl_gengduo.png);
+    transform: rotate(-90deg);
+}

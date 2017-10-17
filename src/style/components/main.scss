@@ -1,0 +1,187 @@
+@charset "utf-8";
+@import "./../../libs/assets/sass/common-module-rem-scss/import-lib-mixins-rem";    //公共方法
+@import "./../../libs/assets/sass/common-module-rem-scss/import-mod-page-slide-rem";//滑动
+@import "./../../libs/assets/sass/common-module-rem-scss/import-mod-checkbox-new";  //单选框
+//页面公共样式
+$pageWidth: 750px;
+$baseFontSize: 100px;
+//设置该页面左右边距标准值
+$comm_distance: 0.36rem;
+//距离底部菜单栏的边距
+$commBH: 0.1rem;
+//字体颜色 默认值
+$textColors: f60 111 333 666 888 999 fff ccc 369 3b3b3b f55757 7c7c7c;
+// 设置需要边距px转Rem
+$spaces:4 5 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 35 36 38 40 44 46 50 52 54 60 66 70 76 108 0;
+//圆角
+$Radius : 3 5 10 14 18 24;
+//flex块
+$flexs:1 2 3 4;
+//显示倍率判断image magnification
+$imgM: '@2x';
+//当前项目常用颜色
+$b-bc: #F1F1F1;     //不需要白色背景时的默认背景色
+$main-color:#FF681C;    //主色
+$orange:#f68f5b;
+$red:#FF4F4F;
+$layer-bc: rgba(0, 0, 0, 0.3);
+$f-glay: #808080;    //灰色字体
+
+//需要生成的公共样式
+//rem整数换算
+@function rem ($num) {
+    @return $num/100 * 1rem;
+}
+//单位元的执行方法
+@mixin yuan{
+    &::before{
+        content: "￥";
+    };
+}
+//x
+@mixin unit-x{
+    &::before{
+        content: "x";
+    };
+}
+//居中
+@mixin ubCenter{
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+}
+//清除浮动
+@mixin clear{
+    &::after{
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+//页面居中
+@mixin pageCenter{
+    height: 100%;
+    max-width: 1200px;
+//  min-height: 500px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+//vue单页面样式
+@mixin autoDiv($zindex:0){
+    position: absolute;
+    background-color: $b-bc;
+    width: 100vw;
+    height: 100vh;
+    overflow-y:scroll;
+    top:0;
+    left: 0;
+    right: 0;
+    z-index: $zindex;
+}
+//icon图标布局用bg替换时
+@mixin bindicBg($icwidth,$icheight){
+    //@extend .ui-d-b;
+    display: block;
+    width: $icwidth;
+    height: $icheight;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: 0 center;
+}
+
+//图标-文字-图标>>横向菜单布局
+@mixin iTLayout{
+    //@extend .ub,.ub-ac,.iconfont;
+    display: -webkit-box;
+    -webkit-box-align:center;
+    border-width: rem(1) 0;
+    border-style: solid;
+    border-color: #{$b-eee};
+    &>span{
+        font-weight: normal;
+        &:first-child{
+            font-family: "iconfont";
+            margin-left: rem(44);
+            margin-right: rem(18);
+        }
+        &:nth-child(2){
+            float: right;
+        }
+    }
+}
+
+//加减框
+@mixin bindModified($inputWidth,$boxWidth,$boxHeight){
+    $m-b-color: #e5e5e5;
+    width: $boxWidth;
+    height: $boxHeight;
+    display: -webkit-box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #fff;
+    border:rem(1) solid #{$m-b-color};
+    &>div{
+        //@extend .iconbasefont,.flex-1,.ui-hp,.ui-wp;
+        font-family: "iconbasefont";
+        &.modified-button{
+            //@extend .ub,.ub-ac,.ub-pc,.ui-text-strong,.f-44;
+            display: -webkit-box;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+            font-weight: bold;
+            font-size: rem(12);
+            color: #666;
+            flex: 1;
+            -webkit-box-flex: 1;
+            height: 100%;
+            width: 100%;
+        }
+        &.no-click{
+            color: #b8b8b8;
+            background-color: #f5f5f5;
+        }
+        &:nth-child(1){
+            @extend .modified-button;
+            border-right:rem(1) solid #{$m-b-color};
+            &::before{
+                content: '\e6fe';
+            }
+        }
+        &:nth-child(2){
+            input{
+                font-size: rem(16);
+                color: #333;
+                text-align: center;
+                width: rem($inputWidth);
+                height: $boxHeight - 2px;
+                border: none;
+                display: block;
+            }
+        }
+        &:nth-child(3){
+            @extend .modified-button;
+            border-left:rem(1) solid #{$m-b-color};
+            &::before{
+                content: '\e6b9';
+            }
+        }
+    }
+}

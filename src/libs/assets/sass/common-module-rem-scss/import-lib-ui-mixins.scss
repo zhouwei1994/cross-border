@@ -1,0 +1,354 @@
+@charset "utf-8";
+@mixin button($height, $bc: #f60, $tc: #fff, $dbc: #fff, $dtc: #ccc) {
+    .mod-btn {
+        display: block;
+        background-color: $bc;
+        text-align: center;
+        color: $tc;
+        position: relative;
+        border-radius: 3px;
+        height: $height;
+        line-height: $height;
+        width: 100%;
+        &.btn_disabled {
+            background-color: $dbc;
+            color: $dtc;
+        }
+    }
+}
+
+/*
+    生成带边框的信息展示样式，通常是左右结构的展示样式
+    $pl：展示左边偏移量
+    $paddingTB: 展示区域上下边距
+*/
+@mixin info-line($pl: pxToRem(15), $paddingTB: pxToRem(10), $outerborder: #e5e5e5) {
+    .mod-info-line {
+        background-color: #fff;
+        border-top: 1px solid $outerborder;
+        border-bottom: 1px solid $outerborder;
+        padding-left: $pl;
+        .info-item {
+            position: relative;
+            width: 100%;
+            display: -webkit-box;
+            -webkit-box-pack: justify;
+            -webkit-box-align: center;
+            border-bottom: 1px solid $outerborder;
+            padding: $paddingTB 0;
+            box-sizing: border-box;
+            &:last-child {
+                border-bottom: none;
+            }
+            label,
+            .desc-left {
+                display: block;
+                width: 25%;
+                position: relative;
+            }
+            .desc-right {
+                -webkit-box-flex: 1;
+                padding-right: $pl;
+            }
+        }
+        &.border-full {
+            padding-left: 0;
+            padding-right: 0;
+            .desc-left {
+                padding-left: $pl;
+            }
+        }
+    }
+}
+
+/*
+    开关，圆点背景色是白色
+    $bc: 背景色
+    $right: 定位于右边的偏移值
+    $dbc: 在关闭的时候的背景色
+*/
+@mixin switch($bc, $right, $dbc:#ccc) {
+    .mod-switch-btn {
+        background-color: $bc;
+        width: pxToRem(92);
+        height: pxToRem(55);
+        border-radius: .8rem;
+        position: absolute;
+        right: $right;
+        top: 50%;
+        margin-top: pxToRem(-28);
+        &:after {
+            background-color: #fff;
+            @include cycle-lib(pxToRem(49), pxToRem(49), 999px);
+            position: absolute;
+            right: pxToRem(3);
+            top: 50%;
+            margin-top: pxToRem(-25);
+            -webkit-transition: all 0.15s ease;
+            content: "";
+        }
+        &.close {
+            background-color: $dbc;
+            &:after {
+                transform: translateX(pxToRem(-38));
+            }
+        }
+    }
+}
+
+/*
+    生成矩形复选框样式，主要用于勾选和不勾选等同意服务协议等场景
+    $bc: 复选框背景色
+    $size: 外框尺寸
+    $border: 边框颜色
+    $csize: 勾的尺寸
+    $cbc:   勾的背景颜色
+*/
+@mixin rectangleChecked($bc, $size, $border, $csize, $cbc, $width: 2px) {
+    .mod-rec-checkbox-wrap {
+        width: $size;
+        height: $size;
+        line-height: $size;
+        border: 1px solid $border;
+        text-align: center;
+        font-size: 0;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        background-color: $bc;
+        top: -1px;
+        @include rounded(3px);
+        &:after {
+            width: pxToRem($csize);
+            height: pxToRem($csize/2);
+            border-top: 0;
+            border-right: 0;
+            border-left: $width solid $cbc;
+            border-bottom: $width solid $cbc;
+            display: inline-block;
+            transform: rotate(-45deg);
+            content: "";
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+        &.unchecked:after {
+            display: none;
+        }
+    }
+}
+
+/*
+    生成圆形复选框样式，主要用于勾选和不勾选等同意服务协议等场景
+    $bc: 复选框背景色
+    $size: 外框尺寸
+    $border: 边框颜色
+    $csize: 勾的尺寸
+    $cbc:   勾的背景颜色
+*/
+@mixin roundCheck($bc, $size, $border, $csize, $cbc) {
+    .mod-round-check-wrap {
+        width: $size;
+        height: $size;
+        line-height: $size;
+        text-align: center;
+        font-size: 0;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        background-color: $bc;
+        top: -2px;
+        @include rounded(50%);
+        &:after {
+            width: pxToRem($csize);
+            height: pxToRem($csize/2);
+            border-top: 0;
+            border-right: 0;
+            border-left: 2px solid $cbc;
+            border-bottom: 2px solid $cbc;
+            display: inline-block;
+            transform: rotate(-45deg);
+            content: "";
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+        &.unchecked:after {
+            display: none;
+        }
+    }
+}
+
+/*
+    输入框
+    $color: 文字颜色
+    $width: 输入框宽度
+    $pl: 输入文字左偏移值
+    $height: 输入框高度
+*/
+@mixin input($color: #333, $width: 100%, $pl:0, $height: auto, $border: 0) {
+    .mod-input {
+        outline: none;
+        width: $width;
+        height: $height;
+        border: $border;
+        display: block;
+        box-sizing: border-box;
+        @include appearance();
+        padding-left: $pl;
+    }
+}
+
+@mixin select($bg: #fff) {
+    .mod-select {
+        @include appearance();
+        outline: none;
+        direction: rtl;
+        background-color: $bg;
+        border: 0;
+        width: 100%;
+    }
+}
+
+/**
+    生成描述列表
+    1. xxxxxx
+    2. xxxxx
+    $pl：左偏移值
+**/
+@mixin desc-list-withnumber($pl) {
+    .desc-list-item {
+        counter-increment: slideNum;
+        padding-left: $pl;
+        position: relative;
+        letter-spacing: 0;
+        &:before {
+            content: counter(slideNum)".";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: .6rem;
+        }
+    }
+}
+
+/*
+    生成标准对话框类
+    $tbc：标题背景色
+    $tc： 标题文字颜色
+    $fsize： 字号
+    $closeColor：关闭X按钮的颜色
+*/
+@mixin dialog($tbc: #f7f7f7, $tc: #666, $fsize: 0, $closeColor: #999) {
+    .mod-dialog {
+        // border-radius: 0.12rem;
+        border-radius: 3px;
+        width: 90%;
+        position: fixed;
+        top: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 8888;
+        overflow: hidden;
+        font-size: $fsize;
+        .dialog-title {
+            background-color: $tbc;
+            padding-top: pxToRem(20);
+            padding-bottom: pxToRem(20);
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #e6e6e6;
+            color: $tc;
+            .close-wrap {
+                width: pxToRem(44);
+                height: pxToRem(44);
+                position: absolute;
+                right: $comm_distance;
+                top: 50%;
+                line-height: pxToRem(44);
+                transform: translateY(-50%);
+                color: $closeColor;
+                text-align: right;
+            }
+            .close-button{  //用法<span class="close-button">×</span>
+                $closeWrapHeight: pxToRem(80);
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                margin: -$closeWrapHeight/2 0 0;
+                width: $closeWrapHeight;
+                height: $closeWrapHeight;
+                font-size: pxToRem(30);
+                text-align: center;
+                line-height: $closeWrapHeight;
+            }
+        }
+        .dialog-content {
+            box-sizing: border-box;
+            overflow: hidden;
+            background-color: #fff;
+            // background-color: #fff4e7;
+        }
+        .dialog-btn-wrap {
+            text-align: center;
+            @include box-justify();
+            /*padding: pxToRem(30);*/
+            border-top: 1px solid #e6e6e6;
+            .dialog-btn {
+                text-align: center;
+                -webkit-box-flex: 1;
+                /*margin-left: pxToRem(20);*/
+                width: 0%;
+                height: pxToRem(80);
+                line-height: pxToRem(80);
+                background-color: #fff;
+                &.btn-strong {
+                    color: #f60;
+                }
+                &.btn-disabled {
+                    background-color: #ddd;
+                    color: #999;
+                }
+                &:first-child {
+                    border-bottom-left-radius: 5px;
+                    border-right: 1px solid #e6e6e6;
+                }
+                &:last-child {
+                    border-bottom-right-radius: 5px;
+                }
+            }
+        }
+    }
+}
+
+/*
+    获取短信验证码按钮
+    $bc: 背景色
+    $color: 文字颜色
+    $disableBC： 禁用状态下的背景色
+    $disableColor：禁用状态下的文字颜色
+    $comm_distance：全局的当前页面的左右边距值
+*/
+@mixin smscode($bc, $color, $disableBC, $disableColor, $width: 1.4rem) {
+    .mod-smscode-btn {
+        position: absolute;
+        right: $comm_distance;
+        top: 50%;
+        transform: translateY(-50%);  
+        height: 80%;
+        @include vt-middle();
+        background-color: $bc;
+        @include rounded(3px);
+        text-align: center;
+        color: $color;
+        padding-left: pxToRem(10);
+        padding-right: pxToRem(10);
+        width: $width;
+        box-sizing: border-box;
+        &.disabled {
+            background-color: $disableBC;
+            color: $disableColor;
+        }
+    }
+}

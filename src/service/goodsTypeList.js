@@ -1,0 +1,31 @@
+[{
+	desc:'时尚女装',
+	class:'ic-dress',
+},{
+	desc:'流行男装',
+	class:'ic-men'
+},{
+	desc:'箱包配饰',
+	class:'ic-cases'
+},{
+	desc:'潮流鞋子',
+	class:'ic-shoe',
+},{
+	desc:'居家生活',
+	class:'ic-home-use',
+},{
+	desc:'精选美妆',
+	class:'ic-beauty-makeup',
+},{
+	desc:'珠宝名表',
+	class:'ic-luxury',
+},{
+	desc:'户外用品',
+	class:'ic-outdoor-goods',
+},{
+	desc:'数码设备',
+	class:'ic-digital-device',
+},{
+	desc:'母婴奶粉',
+	class:'ic-mam',
+}]

@@ -1,0 +1,211 @@
+@charset "utf-8";
+@import "./main";
+@import "./../../libs/assets/sass/common-module-rem-scss/import-lib-reset";         //复位
+@import "./../../libs/assets/sass/common-module-rem-scss/import-mod-public-rem";    //公共处理方法与样式
+@import "./../../libs/assets/sass/transition";                                      //动画效果
+@include setFontSizeRem(0 12 13 14 15 16 18 20 22 24 26 28 30 32 34 36 44 50 72 88);
+@include font-face("iconbasefont", "//at.alicdn.com/t/font_uzdnz972iqftuik9", "normal", "normal");
+body{
+    min-width: 1350px;
+}
+//main颜色
+.main-color{
+    color: $main-color;
+}
+.main-bc{
+    background-color: $main-color;
+}
+.f-glay{
+    color: $f-glay;
+}
+.red{
+    color:$red;
+}
+.ellipsis{
+    @include text-overflow;
+}
+.ellipsis-2{
+    @include line-overflow(2);
+}
+.clear{
+    &:after {
+        content:'';
+        display:table;
+        clear:both;
+    }
+}
+.cu-po {
+    cursor: pointer;
+}
+iframe{
+    border: none;
+}
+.page-adr{
+    height: 40px;
+    background-color: $b-bc;
+    font-size:rem(14);
+    &>div{
+        padding: 0 24px;
+        background-color: #fff;
+        color: #666;
+    }
+}
+//当前项目相关的
+//logo
+.ic-logo{
+    @include bindicBg(158px,58px);
+    background-image: url(./img/index/TPI_logo.png);
+    background-size: auto 100%;
+    background-position: center center;
+}
+//title
+.c-title{
+    height: 90px;
+    line-height: 90px;
+    font-size:18px;
+    color:#333;
+    font-weight: bold;
+}
+//未找到商品
+.noData {
+  text-align: center;
+  padding: 20px;
+  height: 460px !important;
+  margin-top: 20px !important;
+  background-color: #FFF;
+  position: relative;
+  >div {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    width: 100%;
+    transform: translateY(-50%);
+
+    i {
+      @include bindicBg(40px,40px);
+      background-image: url(./img/goodsDetails/ic_mistaken-tip.png);
+      margin: 0px auto;
+    }
+    p {
+      margin-top: 50px;
+      color: #666;
+      font-size: 16px;
+    }
+  }
+}
+//鼠标hover状态
+.cursor-click{
+    cursor: pointer;
+}
+//orange
+.bc-o-hover{
+    &:hover{
+       @extend .main-bc,.cursor-click;
+    }
+}
+.c-o-hover{
+    &:hover{
+       @extend .main-color,.cursor-click;
+    }
+}
+//red
+.red-hover{
+     &:hover{
+        color: #ff1c1c;
+        @extend .cursor-click;
+    }
+}
+//dark orange
+.bc-do-btn{
+    background-color: $main-color;
+    &:hover{
+        @extend .cursor-click;
+        background-color: #f25c11 !important;
+    }
+}
+
+//dark gray
+.bc-dg-btn{
+    background-color: #F1F1F1;
+    &:hover{
+        @extend .cursor-click;
+        background-color: #e8e8eb !important;
+    }
+}
+//
+.a-hover{
+    &:hover{
+        @extend .cursor-click;
+        text-decoration:underline;
+    }
+}
+.c-title{
+    padding-left: 20px;
+}
+//遮挡层
+.layer-box{
+    @include autoDiv(100);
+    position: fixed;
+    background-color: rgba(0,0,0,0.2);
+}
+//checkbox
+.ic-checkbox{
+    @include bindicBg(16px,16px);
+    cursor: pointer;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Njc1RTVDODE1NEQ2MTFFN0E1MzhGQjY1QzdCMjUyRUQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Njc1RTVDODI1NEQ2MTFFN0E1MzhGQjY1QzdCMjUyRUQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2NzVFNUM3RjU0RDYxMUU3QTUzOEZCNjVDN0IyNTJFRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2NzVFNUM4MDU0RDYxMUU3QTUzOEZCNjVDN0IyNTJFRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrgGwSwAAAAqSURBVHjaYrx06dJ/BgoAC5RmJFP/fyYGCsGoAaMGjBqAmhvJztIAAQYAGKUFmA5eVE4AAAAASUVORK5CYII=);
+}
+.ic-checkbox.act{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Njc1RTVDODU1NEQ2MTFFN0E1MzhGQjY1QzdCMjUyRUQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Njc1RTVDODY1NEQ2MTFFN0E1MzhGQjY1QzdCMjUyRUQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2NzVFNUM4MzU0RDYxMUU3QTUzOEZCNjVDN0IyNTJFRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2NzVFNUM4NDU0RDYxMUU3QTUzOEZCNjVDN0IyNTJFRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgVayZQAAAC/SURBVHjaYvyfIcNACmBiIBEMvAY2TobcJQx6rnABFnyqWVgZkqcyaNkzcPEzXNqNYQMTM4O4Ego3rg9k9uuHDDNTsTkpvJmhZD2DtAaIzcgI4poGMHx4wTA5GkRi9wOPEEPOYgZRBYaACga7WIYv7xgmx4BsQAKMiIhjZGJInAgy9et7Bm5Bhh9fGCZGMjy4gO4vBPP/P4aFhQzs3CB3//7BMD0ZUzWqDRDAysGQMYfh4EJ4sBDSMATTEkCAAQCq/DMOvkL0wgAAAABJRU5ErkJggg==);
+}
+//常用的下边框
+.border-b
+{
+    border-bottom: 1px solid #eee;
+}
+.radio{
+    cursor: pointer;
+    padding-left: 20px;
+    background:url(./img/mine/grzx_icon_yuan_default.png) no-repeat;
+    background-size: 12px 12px;
+    background-position:left center;
+}
+.radio.checked{
+    background-image: url(./img/mine/grzx_icon_yuan_pressed.png);
+}
+
+
+//滚动条样式
+div,p,b,span{
+    scrollbar-3dlight-color: $main-color;
+    scrollbar-darkshadow-color: #f25c11;
+}
+
+textarea{
+    resize: none;
+}
+.auto-textarea{
+    position: relative;
+    span{
+        display:block;
+        visibility:hidden;
+        overflow: hidden;
+    }
+    textarea{
+        position:absolute;
+        top:0;
+        left:0;
+        height:100%;
+    }
+}
+//vue-子页面时
+.page-center{
+    @include pageCenter;
+}
+a:focus{
+    outline:none;
+}
+//::-webkit-scrollbar {
+//  width: 0px;
+//  height: 0px;
+//  background-color: #F5F5F5;
+//}

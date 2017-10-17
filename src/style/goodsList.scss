@@ -1,0 +1,56 @@
+.goods-list {
+    @include clear;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    .goods {
+        width: 287px;
+        height: 400px;
+        margin-top: 32px;
+        background-color: #fff;
+        margin-right: 17px;
+        cursor: pointer;
+        &:hover {
+            border-color: #ddd;
+            box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.08);
+        }
+        img {
+            width: 100%;
+            height: 282px;
+        }
+        .goods-detail {
+            padding: 0 12px;
+        }
+        .goods-name {
+            color: #333;
+            margin-top: 24px;
+            font-size: 15px;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .goods-desc {
+            margin-top: 26px;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            justify-content: space-between;
+            line-height: 31px;
+            -webkit-box-align: center;
+            -webkit-box-pack: justify;
+            color: #ff681c;
+        }
+        .goods-price {
+            font-size: 18px;
+        }
+        .buyers {
+            font-size: 14px;
+            color: #999;
+        }
+    }
+    .goodsfour {
+      margin-right: 0px;
+    }
+}

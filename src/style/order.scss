@@ -1,0 +1,433 @@
+.ui-pt-51{
+    padding-top: 51px;
+}
+.order-detail,.order-lists{
+    .current-bb{
+        border-bottom:1px solid #eee;
+    }
+    .address-title{
+        font-size: 18px;
+        color:#333;
+        height: 70px;
+        line-height: 70px;
+        @extend .current-bb;
+    }
+    .line{
+        display: -webkit-box;
+        font-size:16px;
+        color:#666666;
+        margin-top: 24px;
+    }
+    .line-right{
+        display: -webkit-box;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+    }
+    .ic-selected{
+        @include bindicBg(16px,21px);
+        background-image: url(../../img/order/sctjdd_iconfuxuan.png);
+        background-size: 100% auto;
+        margin-right: 18px;
+    }
+    .add-adrress{
+        margin-top: 34px;
+    }
+    .add-btn{
+        height: 36px;
+        display: inline-block;
+        padding: 0px 10px;
+        line-height: 36px;
+        text-align: center;
+        background-color: $main-color;
+        font-size: 16px;
+        color:#fff;
+        margin-bottom: 32px;
+    }
+    .line-p-t{
+        margin-top: 38px;
+    }
+    .o-goods-table{
+        margin-top: -3px;
+        padding-bottom: 18px;
+        width: 100%;
+        color: #666;
+        @extend .current-bb;
+        .common-tr{
+            &>div.goods-desc{
+                display: -webkit-box;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: flex;
+                width: 100%;
+                flex: 1;
+                -webkit-box-pack:start;
+            }
+            &>div{
+                width:172px;
+            }
+        }
+        .th{
+            display: -webkit-box;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            background-color: $main-color;
+            font-size: 16px;
+            color:#fff;
+            font-weight: normal;
+            @extend .common-tr;
+            &>div:first-child{
+                padding-left: 58px;
+            }
+        }
+        .tr{
+            height: 110px;
+            display: flex;
+            @extend .common-tr;
+            .goods-desc{
+                padding-left: 14px;
+                -webkit-box-pack: center;
+                img{
+                  position: relative;
+                  top: 50%;
+                  right: 0px;
+                  transform: translateY(-50%);
+                    display: block;
+                    height: 66px;
+                    width: 66px;
+                    border:1px solid #eee;
+                }
+                &>div{
+                    display: -webkit-box;
+                    display: -webkit-box;
+                    display: -moz-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    padding-left: 16px;
+                    width: 100%;
+                    font-size: 14px;
+                }
+                &>div.goodsImg {
+                  width: 66px;
+                  padding-left: 0px;
+                  flex-shrink: 0;
+                  flex: initial;
+                }
+            }
+        }
+        .goods-price,.goods-total{
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 121px;
+            text-align: center;
+        }
+        .goods-num{
+            font-size: 14px;
+            line-height: 121px;
+            text-align: center;
+        }
+        .goods-total{
+            color:$main-color;
+        }
+        .goods-name{
+            flex: 1;
+            width: 100%;
+            &>div {
+              position: relative;
+              top: 50%;
+              right: 0px;
+              transform: translateY(-50%);
+            }
+            .name:hover {
+              color: #FF681C;
+              cursor: pointer;
+            }
+            .linkOrder {
+              p {
+                display: inline-block;
+              }
+              p:hover {
+                color: #FF681C;
+                cursor: pointer;
+              }
+              span {
+                margin-left: 10px;
+                color: #FF681C;
+                font-size: 14px;
+              }
+            }
+        }
+        .goods-type{
+          width: 120px;
+          padding: 0 20px;
+          text-align: center;
+          .goods_Box {
+            cursor: pointer;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            .goodsParameter {
+              position: absolute;
+              display: none;
+              top: calc(100% + 15px);
+              left: 50%;
+              transform: translateX(-50%);
+              padding: 10px;
+              text-align: left;
+              box-shadow: 0px 1px 5px 0px #ccc;
+              z-index: 1000;
+              background-color: #FFF;
+              .arrow {
+                position: absolute;
+                top: -10px;
+                left: 50%;
+                width: 0;
+                height: 0;
+                transform: translateX(-50%);
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 10px solid #eee;
+                &::after {
+                  content: "";
+                  position: absolute;
+                  top: 3px;
+                  left: -8px;
+                  width: 0;
+                  height: 0;
+                  border-left: 8px solid transparent;
+                  border-right: 8px solid transparent;
+                  border-bottom: 10px solid #FFF;
+                }
+              }
+              ul {
+                li {
+                  font-size: 12px;
+                  color: #333;
+                  white-space: nowrap;
+                  padding-bottom: 10px;
+                }
+                li:last-child {
+                  padding-bottom: 0px;
+                }
+                .whiteSpace {
+                  width: 300px;
+                  white-space: normal;
+                }
+              }
+            }
+            &:hover {
+              color: #FF681C;
+              .goodsParameter {
+                display: block;
+              }
+            }
+          }
+        }
+    }
+    .commit-box{
+        @include clear;
+        .commit-btn{
+            width: 266px;
+            height: 60px;
+            float: right;
+            line-height: 60px;
+            text-align: center;
+            font-size:24px;
+            color: #fff;
+            background-color: $main-color;
+            margin: 51px 38px 54px 0;
+        }
+    }
+}
+//订单中心
+.order-lists{
+    background: #FFFFFF;
+    .order-status{
+        @include clear;
+        height:54px;
+        line-height:54px;
+        font-size:16px;
+        color:#666;
+        border-bottom: 1px solid #eee;
+        li{
+            float: left;
+            margin-right: 78px;
+            cursor: pointer;
+            &:first-child{
+                margin-left: 28px;
+            }
+        }
+        li.act{
+            color:$main-color;
+            position: relative;
+            &::after{
+                content: '';
+                display: block;
+                background-color: $main-color;
+                position: absolute;
+                height: 4px;
+                width: 60px;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom:0px;
+            }
+        }
+    }
+    .o-goods-table{
+        width: calc(100% - 16px);
+        margin: 43px 8px 0;
+        font-size:16px;
+        border-bottom:0;
+        $lastWidth:260px;
+        $trHeight:152px;
+        .common-tr{
+            border:0 solid #eee;
+            border-width:  0px 1px 1px 1px;
+            &>div.goods-desc{
+                width: 100%;
+                flex: 1;
+                &>div {
+                  height: $trHeight;
+                }
+            }
+            &>div{
+                &:nth-child(2){
+                    width: 132px;
+                }
+                &:nth-child(3){
+                    width: 180px;
+                }
+                &:nth-child(4){
+                    width: 169px;
+                }
+                &:nth-child(5){
+                    width: $lastWidth;
+                }
+            }
+        }
+        .th{
+            text-align: center;
+            height: 43px;
+            line-height: 43px;
+            @extend .common-tr;
+        }
+        .th-child{
+            display: -webkit-box;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+            height:44px;
+            line-height: 44px;
+            background: #f8f8f8;
+            border:0 solid #eee;
+            border-width:  0px 1px 1px 1px;
+            div{
+                height: 100%;
+                display: flex;
+                &:first-child{
+                    padding-left: 18px;
+                    font-size: 12px;
+                    color: #666;
+                }
+                &:last-child{
+                    width: $lastWidth;
+                    justify-content: center;
+                    .ic-server{
+                        margin-right: 11px;
+                        background-size: 100% auto;
+                        height:44px;
+                    }
+                }
+            }
+        }
+        .tr-box{
+            display: flex;
+            .tr-list{
+                width: 100%;
+                flex:1;
+                -webkit-box-flex: 1;
+            }
+            .tr{
+                height: $trHeight;
+                @extend .common-tr;
+                .ui-text-strong,.num {
+                    height: $trHeight;
+                    line-height:$trHeight;
+                    text-align:center;
+                }
+            }
+            .auto-height{
+                border: 1px solid #eee;
+                border-width: 0 1px 1px 0;
+                &>div{
+                    font-size:16px;
+                    color:#666;
+                }
+                .tr-status {
+                  position: relative;
+                  top:50%;
+                  left: 0px;
+                  transform: translateY(-50%);
+                  text-align: center;
+                }
+            }
+            .order-operate{
+                width: $lastWidth;
+                position: relative;
+                top:50%;
+                left: 0px;
+                transform: translateY(-50%);
+                text-align: center;
+                .bc-do-btn{
+                    padding: 0px 10px;
+                    display: inline-block;
+                    height: 34px;
+                    line-height: 34px;
+                    color: #fff;
+                    font-size:14px;
+                    text-align: center;
+                    margin: 0px auto 7px auto;
+                }
+                .o-min{
+                    font-size:14px;
+                    a{
+                        display: inline-block;
+                        &::before{
+                            content:"";
+                            display: inline-block;
+                            width: 1px;
+                            height: 12px;
+                            position: relative;
+                            top:1px;
+                            margin: 0px 10px;
+                            background-color: #B5B5B5;
+                        }
+                    }
+                    a:first-child{
+                        &::before{
+                            content: "";
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .ic-server{
+        @include bindicBg(16px,16px);
+        background-image: url(../../img/order/wddd_icon_kefu.png);
+
+    }
+}

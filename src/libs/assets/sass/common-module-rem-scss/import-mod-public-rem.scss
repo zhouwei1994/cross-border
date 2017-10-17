@@ -1,0 +1,302 @@
+@charset "utf-8";
+body {
+  background-color: #F1F1F1;
+  margin: 0 auto;
+  font-family: "微软雅黑",ff-tisa-web-pro-1,ff-tisa-web-pro-2;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.ui-lh{
+    line-height: 1.6;
+}
+
+.ui-fl-r {
+  float: right;
+}
+
+.ui-fl-l {
+  float: left;
+}
+
+.ui-ta-c {
+  text-align: center;
+}
+
+.ui-ta-l {
+  text-align: left;
+}
+
+.ui-ta-r {
+  text-align: right!important;
+}
+
+.ui-no-tap-highlight {
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+
+.ui-text-strong {
+  font-weight: bold;
+}
+
+.ui-fw-n {
+  font-weight: normal!important;
+}
+
+.ui-link-block {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ui-d-b {
+  display: block;
+}
+.ui-d-ib{
+    display: inline-block;
+}
+.ui-d-n {
+  display: none!important;
+}
+.ui-p-r {
+  position: relative;
+}
+
+.ui-p-a {
+  position: absolute;
+}
+.ui-b-n{
+   border: none !important;
+}
+.ui-bb-n {
+  border-bottom: none!important;
+}
+
+.ui-bt-n {
+  border-top: none!important;
+}
+
+.ui-bb-standard {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.ui-bt-standard {
+  border-top: 1px solid #e5e5e5;
+}
+
+.ui-ov-h {
+  overflow: hidden;
+}
+
+.ui-lh-standard {
+  line-height: .7rem !important;
+}
+
+.ui-link-dih {
+  height: 100%;
+  display: inline-block;
+}
+.ui-d-wb {
+  display: -webkit-box;
+  display: box;
+}
+
+.ui-vtm {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.overlay {
+  background-color: #000;
+  filter: alpha(opacity=60);
+  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 1024;
+  -webkit-backface-visibility: hidden;
+}
+
+.ui-vv {
+  visibility: visible;
+}
+
+.ui-vh {
+  visibility: hidden;
+}
+
+.ui-wp{
+    width: 100%;
+}
+.ui-hp{
+    height: 100%;
+}
+.bg-s-c{
+    background-size: cover;
+}
+.ub{
+    display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+    display: -moz-box; /* Firefox 17- */
+    display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+    display: -moz-flex; /* Firefox 18+ */
+    display: -ms-flexbox; /* IE 10 */
+    display: flex;
+}
+
+.ub-dr{
+    -webkit-box-direction:reverse;
+}
+
+.ub-ac{
+    -webkit-box-align:center;
+    align-items: center;
+}
+
+.ub-ae{
+    -webkit-box-align: end;
+    align-items: flex-end;
+}
+
+.ub-pc{
+    -webkit-box-pack:center;
+     justify-content: center;
+}
+
+.ub-pj{
+    -webkit-box-pack: justify;
+    justify-content:space-between;
+}
+
+.ub-pe{
+    -webkit-box-pack: end;
+    justify-content:flex-end;
+}
+
+.ub-ov{
+    @include prefixer(box-orient,vertical,spec webkit);
+     flex-direction: column;
+}
+
+.uf{
+    display: flex;
+}
+
+.uf-dc{
+    flex-direction: column;
+}
+//常用flex-占用区域数
+@mixin generateCommflexs {
+  @if length($flexs) > 0 {
+    @each $flex in $flexs {
+      .flex-#{$flex} {
+        @include prefixer(box-flex,$flex,spec webkit);
+        @include prefixer(flex,$flex,spec webkit);
+      }
+    }
+  }
+  @else {
+    @warn "common flexs is empty!";
+  }
+}
+
+//常用间距
+@mixin generateCommSpaces {
+  @if length($spaces) > 0 {
+    @each $space in $spaces {
+      .ui-mx-#{$space} {
+        margin-left:pxToRem($space + 0px);
+        margin-right:pxToRem($space + 0px);
+      }
+      .ui-my-#{$space} {
+        margin-top:pxToRem($space + 0px);
+        margin-bottom:pxToRem($space + 0px);
+      }
+      .ui-mt-#{$space} {
+        margin-top: pxToRem($space + 0px);
+      }
+      .ui-mr-#{$space} {
+        margin-right: pxToRem($space + 0px);
+      }
+      .ui-mb-#{$space} {
+        margin-bottom: pxToRem($space + 0px);
+      }
+      .ui-ml-#{$space} {
+        margin-left: pxToRem($space + 0px);
+      }
+      .ui-px-#{$space} {
+        padding-left:pxToRem($space + 0px);
+        padding-right:pxToRem($space + 0px);
+      }
+      .ui-py-#{$space} {
+        padding-top:pxToRem($space + 0px);
+        padding-bottom:pxToRem($space + 0px);
+      }
+      .ui-pt-#{$space} {
+        padding-top: pxToRem($space + 0px);
+      }
+      .ui-pr-#{$space} {
+        padding-right: pxToRem($space + 0px);
+      }
+      .ui-pb-#{$space} {
+        padding-bottom: pxToRem($space + 0px);
+      }
+      .ui-pl-#{$space} {
+        padding-left: pxToRem($space + 0px);
+      }
+    }
+  }
+  @else {
+    @warn "common space is empty!";
+  }
+}
+
+//常用颜色
+@mixin generateCommColors {
+  @if length($textColors) > 0 {
+    @each $color in $textColors {
+      .color-#{$color} {
+        color: unquote("#" + $color);
+      }
+      .ui-bc-#{$color}{
+          background-color: unquote("#" + $color);
+      }
+    }
+  }
+  @else {
+    @warn "common color is empty!";
+  }
+}
+
+//常用圆角
+@mixin generateCommRadius {
+  @if length($Radius) > 0 {
+    @each $Radiu in $Radius {
+      .ui-br-#{$Radiu} {
+        border-radius: pxToRem($Radiu);
+      }
+      .ui-bl-br#{$Radiu}{
+        border-bottom-left-radius: pxToRem($Radiu);
+      }
+      .ui-br-br#{$Radiu}{
+        border-bottom-right-radius: pxToRem($Radiu);
+      }
+      .ui-tl-br#{$Radiu}{
+        border-top-left-radius: pxToRem($Radiu);
+      }
+      .ui-tr-br#{$Radiu}{
+        border-top-right-radius: pxToRem($Radiu);
+      }
+    }
+  }
+  @else {
+    @warn "common color is empty!";
+  }
+}
+@include generateCommflexs;
+@include generateCommSpaces;
+@include generateCommColors;
+@include generateCommRadius;
