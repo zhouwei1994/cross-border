@@ -1,14 +1,18 @@
 import { async, verifyNull } from "@/service/model/public"
 import md5 from 'js-md5'
+import base64 from '@/service/model/base64'
 //加入购物车
-var addCar = (productNo, name, imgUrl, visitUrl, cnPrice, productNumber, stock, productText) => async('/api/user/buyercar/buyercar_add', {
-  productNo, name, imgUrl, visitUrl, cnPrice, productNumber, stock, productText
-}, "POST", {
-    noTip: true,
-    success: function (obj) {
+var addCar = (productNo, name, imgUrl, visitUrl, cnPrice, productNumber, stock, productText) => {
+  visitUrl = new base64().encode(visitUrl);
+  return async('/api/user/buyercar/buyercar_add', {
+    productNo, name, imgUrl, visitUrl, cnPrice, productNumber, stock, productText
+  }, "POST", {
+      noTip: true,
+      success: function (obj) {
 
-    }
-  })
+      }
+    })
+}
 //查询购物车
 var buyercarInfo = (lang) => async('/api/user/buyercar/buyercar_info', {
   lang
@@ -61,7 +65,6 @@ var detailCommon = (auctionNumId) => async('/detailCommon.htm', {
 }, "JSONP", '', 'https://rate.taobao.com');
 //获取翻译
 var translate = (q, target = 'th', source = 'zh-CN', load = false) => {
-  console.log(q);
   return async('/api/open/common/translate_google', {
     q, target, source
   }, 'POST', { load: load });

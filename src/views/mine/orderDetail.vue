@@ -85,7 +85,11 @@
                       </div>
                       <div>
                         <div class="goods-name">
-                          <div @click="pageJump(item.visitUrl)">{{$i18n.locale == 'zh_CN' ? item.productName : completed[item.translationIndex] || item.productName}}</div>
+                          <div class="linkOrder">
+                            <p @click="pageJump(item.visitUrl,orderMainBO.mau)" v-if="item.productName != 0">{{$i18n.locale == 'zh_CN' ? item.productName : completed[item.translationIndex] || item.productName}}</p>
+                            <p @click="pageJump(item.visitUrl,orderMainBO.mau)" v-else>{{$t('orderCenter.unknown')}}</p>
+                            <span v-if="orderMainBO.mau === 1">（{{$t('confirmOrder.linkOrders')}}）</span>
+                          </div>
                         </div>
                         <div class="goods-type">
                           <div class="goods_Box" :style="{zIndex:100-index}">
@@ -156,7 +160,8 @@
           <div class="o-amount">
             <div>
               <span>{{$t('orderDetail.totalPriceOfGoods')}}：</span>
-              <span>{{$store.state.exchangeRate.symbol}}{{orderMainBO.productTotalPrice | currency}}</span>
+              <span v-if="orderMainBO.productTotalPrice">{{$store.state.exchangeRate.symbol}}{{orderMainBO.productTotalPrice | currency}}</span>
+              <span v-else>{{$t('orderCenter.unknown')}}</span>
             </div>
             <div>
               <span>{{$t('confirmOrder.freight')}}：</span>
@@ -170,7 +175,8 @@
             </div>
             <div class="order-total">
               <span>{{$t('confirmOrder.amountsPayable')}}：</span>
-              <span>{{$store.state.exchangeRate.symbol}}{{orderMainBO.orderTotalPrice | currency}}</span>
+              <span v-if="orderMainBO.orderTotalPrice">{{$store.state.exchangeRate.symbol}}{{orderMainBO.orderTotalPrice | currency}}</span>
+              <span v-else>{{$t('orderCenter.unknown')}}</span>
             </div>
             <div class="tip" v-if="orderMainBO.orderStatusInfo != 3101">
               <div>
@@ -305,8 +311,12 @@ export default {
       });
     },
 
-    pageJump(url) {
-      openGoodsLink(this, url, true);
+    pageJump(url,mau) {
+      if(mau === 1){
+        window.open(url);
+      }else{
+        openGoodsLink(this, url, true);
+      }
     },
     //修改订单状态
     orderUpdate(id, state) {

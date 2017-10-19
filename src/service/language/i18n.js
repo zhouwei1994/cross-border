@@ -205,6 +205,17 @@ export default new VueI18n({
         TheTotalAmountOfOrdersChargedBetween:'订单总价在SS之间收取服务费为总价的XX',
         TheTotalAmountOfOrdersChargedBetweenServiceFee:'订单总价在SS之间收取服务费为XX',
         theProductDoesNotExist:'该商品不存在',
+
+        linkOrders:'链接下单',
+        productInformationAnalysisFailsYouCanManuallyFillInProductInformation:'商品信息解析失败，您可以手动填写商品信息，提交后我们为您购买。',
+        accessLink:'访问链接',
+        pleaseEnterTheCompleteProductLink:'请输入完整的商品链接',
+        productMessage:'商品留言',
+        pleaseEnterYourNeedsForThisTtemSuchAsProductSpecifications:'请输入您对此商品的需求。如商品的规格、尺寸、大小、数量等信息。',
+        pleaseFillInTheAccessLink:'请填写访问链接',
+        pleaseFillInTheCorrectAccessLink:'请填写正确的访问链接',
+        pleaseFillInTheMessage:'请填写商品留言',
+        landTransportReceivedDaysAfterArrivalShippingArrivedAfterArrivalDays:'陆运收到货后5-7天到达，海运收到货后12-15天到达，详细情况请参考',
       },
       //confirmSucceed
       confirmSucceed: {
@@ -243,6 +254,9 @@ export default new VueI18n({
         makeSureThePaymentIsSuccessful: '确定付款成功',
         makeSureTheReceiptIsSuccessful: '确定收货成功',
         cancelOrderSuccess: '取消订单成功！',
+
+        modeOfTransport:'运输方式',
+        unknown:'未知',
       },
       //orderDetail
       orderDetail: {
@@ -551,6 +565,17 @@ export default new VueI18n({
         TheTotalAmountOfOrdersChargedBetween:'The total amount of orders charged between SS is the total price of XX',
         TheTotalAmountOfOrdersChargedBetweenServiceFee:'The total price of the order is between SS and the service fee is XX',
         theProductDoesNotExist:'The product does not exist',
+
+        linkOrders:'Link orders',
+        productInformationAnalysisFailsYouCanManuallyFillInProductInformation:'Product information analysis fails, you can manually fill in product information, after submission for you to buy for you.',
+        accessLink:'Access link',
+        pleaseEnterTheCompleteProductLink:'Please enter the complete product link',
+        productMessage:'Product message',
+        pleaseEnterYourNeedsForThisTtemSuchAsProductSpecifications:'Please enter your needs for this item. Such as product specifications, size, size, quantity and other information.',
+        pleaseFillInTheAccessLink:'Please fill in the access link',
+        pleaseFillInTheCorrectAccessLink:'Please fill in the correct access link',
+        pleaseFillInTheMessage:'Please fill in the message',
+        landTransportReceivedDaysAfterArrivalShippingArrivedAfterArrivalDays:'Land transport received 5-7 days after arrival, shipping arrived after arrival 12-15 days, please refer to the details',
       },
       //confirmSucceed
       confirmSucceed: {
@@ -589,6 +614,9 @@ export default new VueI18n({
         makeSureThePaymentIsSuccessful: 'Determine payment success',
         makeSureTheReceiptIsSuccessful: 'Confirm receipt of successful delivery',
         cancelOrderSuccess: 'Cancel order success!',
+
+        modeOfTransport:'Mode of transport',
+        unknown:'unknown',
       },
       //orderDetail
       orderDetail: {
@@ -897,6 +925,17 @@ export default new VueI18n({
         TheTotalAmountOfOrdersChargedBetween:'ราคารวมใบสั่งซื้ออยู่ระหว่างSS เก็บค่าบริการเป็นXXของราคารวม',
         TheTotalAmountOfOrdersChargedBetweenServiceFee:'ราคารวมใบสั่งซื้ออยู่ระหว่างSS เก็บค่าบริการเป็นXX',
         theProductDoesNotExist:'ไม่มีผลิตภัณฑ์',
+
+        linkOrders:'ลิงก์คำสั่งซื้อ',
+        productInformationAnalysisFailsYouCanManuallyFillInProductInformation:'การวิเคราะห์ข้อมูลผลิตภัณฑ์ล้มเหลวคุณสามารถกรอกข้อมูลผลิตภัณฑ์ได้ด้วยตนเองหลังจากที่คุณส่งมอบให้กับคุณ',
+        accessLink:'เข้าถึงลิงก์',
+        pleaseEnterTheCompleteProductLink:'โปรดป้อนลิงก์ผลิตภัณฑ์ฉบับสมบูรณ์',
+        productMessage:'ข้อความผลิตภัณฑ์',
+        pleaseEnterYourNeedsForThisTtemSuchAsProductSpecifications:'โปรดป้อนความต้องการของคุณสำหรับรายการนี้ เช่นข้อกำหนดผลิตภัณฑ์ขนาดขนาดปริมาณและข้อมูลอื่น ๆ',
+        pleaseFillInTheAccessLink:'โปรดกรอกลิงค์การเข้าถึง',
+        pleaseFillInTheCorrectAccessLink:'โปรดกรอกลิงค์การเข้าถึงที่ถูกต้อง',
+        pleaseFillInTheMessage:'โปรดกรอกข้อความ',
+        landTransportReceivedDaysAfterArrivalShippingArrivedAfterArrivalDays:'การขนส่งทางบกได้รับ 5-7 วันหลังจากที่เดินทางมาถึงจัดส่งถึงหลังจากที่มาถึง 12-15 วันโปรดดูรายละเอียด',
       },
       //confirmSucceed
       confirmSucceed: {
@@ -935,6 +974,9 @@ export default new VueI18n({
         makeSureThePaymentIsSuccessful: 'ยืนยันการชำระเงินเรียบร้อย',
         makeSureTheReceiptIsSuccessful: 'ยืนยันการรับสินค้าเรียบร้อย',
         cancelOrderSuccess: 'ยกเลิกใบสั่งซื้อสำเร็จ',
+
+        modeOfTransport:'โหมดการขนส่ง',
+        unknown:'ไม่ทราบ',
       },
       //orderDetail
       orderDetail: {
@@ -1243,6 +1285,17 @@ export default new VueI18n({
         TheTotalAmountOfOrdersChargedBetween:'ຄຳສັ່ງລາຄາລວມໃນລະຫວ່າງSSຈະໄດ້ຮັບເອົາຄ່າບໍລິການຂອງລາຄາລວມເປັນxx',
         TheTotalAmountOfOrdersChargedBetweenServiceFee:'ຄຳສັ່ງລາຄາລວມໃນລະຫວ່າງSSຈະໄດ້ຮັບເອົາຄ່າບໍລິການXX',
         theProductDoesNotExist:'ຜະລິດຕະພັນບໍ່ມີຢູ່',
+
+        linkOrders:'ຄໍາສັ່ງເຊື່ອມຕໍ່',
+        productInformationAnalysisFailsYouCanManuallyFillInProductInformation:'ການວິເຄາະຂໍ້ມູນກ່ຽວກັບຜະລິດຕະພັນລົ້ມເຫລວ, ທ່ານສາມາດຕື່ມຂໍ້ມູນຂ່າວສານຜະລິດຕະພັນດ້ວຍຕົນເອງ, ຫຼັງຈາກການຍື່ນສະເຫນີໃຫ້ທ່ານຊື້ສໍາລັບທ່ານ.',
+        accessLink:'ເຊື່ອມຕໍ່ການເຂົ້າເຖິງ',
+        pleaseEnterTheCompleteProductLink:'ກະລຸນາໃສ່ລະຫັດຜະລິດຕະພັນທີ່ສົມບູນ',
+        productMessage:'ຂໍ້ຄວາມຜະລິດຕະພັນ',
+        pleaseEnterYourNeedsForThisTtemSuchAsProductSpecifications:'ກະລຸນາໃສ່ຄວາມຕ້ອງການຂອງທ່ານສໍາລັບລາຍການນີ້. ເຊັ່ນ: ຂໍ້ກໍານົດຂອງຜະລິດຕະພັນ, ຂະຫນາດ, ຂະຫນາດ, ປະລິມານແລະຂໍ້ມູນອື່ນໆ.',
+        pleaseFillInTheAccessLink:'ໂປດກອກຂໍ້ມູນເຂົ້າໃນການເຊື່ອມຕໍ່',
+        pleaseFillInTheCorrectAccessLink:'ໂປດກອກຂໍ້ມູນໃນການເຂົ້າເຖິງທີ່ຖືກຕ້ອງ',
+        pleaseFillInTheMessage:'ໂປດກອກຂໍ້ຄວາມ',
+        landTransportReceivedDaysAfterArrivalShippingArrivedAfterArrivalDays:'ການຂົນສົ່ງທີ່ດິນໄດ້ຮັບ 5-7 ມື້ຫຼັງຈາກການມາເຖິງ, ການຂົນສົ່ງມາຮອດຫຼັງຈາກການມາຮອດ 12-15 ມື້, ກະລຸນາເບິ່ງລາຍລະອຽດ',
       },
       //confirmSucceed
       confirmSucceed: {
@@ -1281,6 +1334,9 @@ export default new VueI18n({
         makeSureThePaymentIsSuccessful: 'ຍືນຍັນການຈ່າຍເງິນຮຽບຮ້ອຍ',
         makeSureTheReceiptIsSuccessful: 'ຍືນຍັນການຮັບສິນຄ້າຮຽບຮ້ອຍ',
         cancelOrderSuccess: 'ຍົກເລີກໃບສັ່ງຊື້ສໍາເລັດ',
+
+        modeOfTransport:'ຮູບແບບການຂົນສົ່ງ',
+        unknown:'ບໍ່ຮູ້ຈັກ',
       },
       //orderDetail
       orderDetail: {
@@ -1587,6 +1643,17 @@ export default new VueI18n({
         TheTotalAmountOfOrdersChargedBetween:'ဝယ္ယူေသာကုန္ပစြည္းသည္SSအထက္ရွိပါကတန္ဖိုးေပၚမူတည္ျပီးဝန္ေဆာင္ခသည္စုစုေပါင္းတန္ဖိုးရဲ႕XX',
         TheTotalAmountOfOrdersChargedBetweenServiceFee:'ဝယ္ယူေသာကုန္ပစြည္းသည္SSအတဝင္းရွိပါကဝန္ေဆာင္ခXX',
         theProductDoesNotExist:'ဒီထုတ်ကုန်မတည်ရှိပါဘူး',
+
+        linkOrders:'links အမိန့်',
+        productInformationAnalysisFailsYouCanManuallyFillInProductInformation:'ကုန်ပစ္စည်းသတင်းအချက်အလက်ခွဲခြမ်းစိတ်ဖြာပျက်ကွက်ငါတို့သည်သင်တို့အဘို့အဝယ်ယူတင်သွင်းပြီးနောက်, သငျသညျ, ကိုယ်တိုင်ထုတ်ကုန်သတင်းအချက်အလက်ဖြည့်နိုင်ပါတယ်။',
+        accessLink:'access ကို Links များ',
+        pleaseEnterTheCompleteProductLink:'သင့်ရဲ့အပြည့်အဝထုတ်ကုန် link ကိုရိုက်ထည့်ပေးပါ',
+        productMessage:'ကုန်စည်ဒိုင်သတင်းစကား',
+        pleaseEnterYourNeedsForThisTtemSuchAsProductSpecifications:'ဒီကုန်စည်အဘို့သင့်ဝယ်လိုအားရိုက်ထည့်ပေးပါ။ အဆိုပါထုတ်ကုန်သတ်မှတ်ချက်များ, အတိုင်းအတာ, အရွယ်အစား, အရေအတွက်အားနှင့်အခြားသတင်းအချက်အလက်များ။',
+        pleaseFillInTheAccessLink:'အဆိုပါ access ကို link ကိုဖြည့်စွက်ပေးပါ',
+        pleaseFillInTheCorrectAccessLink:'မှန်ကန်သော access ကို link ကိုဖြည့်ပေးပါ',
+        pleaseFillInTheMessage:'ကုန်စည်ဒိုင်သတင်းစကားကိုဖြည့်ပါကျေးဇူးပြုပြီး',
+        landTransportReceivedDaysAfterArrivalShippingArrivedAfterArrivalDays:'5-7 ရက်ကုန်ပစ္စည်းများလက်ခံရရှိပြီးနောက်ပြည်တော်ကိုကြည့်ရှုခြင်း, ကုန်စည်လက်ခံရရှိအသေးစိတ်အတွက်ပင်လယ်ကိုရောက်ရှိဖို့ 12-15 ရက်အကြာမှာ, ရောက်ရှိမည်',
       },
       //confirmSucceed
       confirmSucceed: {
@@ -1625,6 +1692,9 @@ export default new VueI18n({
         makeSureThePaymentIsSuccessful: 'ေငြေပးေခ်မွဳကိုအတည္ျပဳရန္',
         makeSureTheReceiptIsSuccessful: 'ကုန္စည္လက္ခံရရွိျခင္း ေသခ်ာပါသလား',
         cancelOrderSuccess: 'ေအာ္ဒါပယ္ဖ်က္ျခင္းေအာင္ျမင္ပါသည္',
+
+        modeOfTransport:'သယ်ယူပို့ဆောင်ရေး၏ mode ကို',
+        unknown:'အမည်မသိ',
       },
       //orderDetail
       orderDetail: {

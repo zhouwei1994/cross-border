@@ -29,36 +29,36 @@ const state = { //访问状态对象
     searchKey: ''
   },
   //服务费率
-  ratio:[
-    {min:0,max:500,cost:50},
-    {min:500,max:1000,cost:100},
-    {min:1001,max:5000,cost:0.03},
-    {min:5001,max:10000,cost:0.02},
-    {min:10001,max:50000,cost:0.015},
-    {min:50001,max:'',cost:0.01},
+  ratio: [
+    { min: 0, max: 500, cost: 50 },
+    { min: 500, max: 1000, cost: 100 },
+    { min: 1001, max: 5000, cost: 0.03 },
+    { min: 5001, max: 10000, cost: 0.02 },
+    { min: 10001, max: 50000, cost: 0.015 },
+    { min: 50001, max: '', cost: 0.01 },
   ],
   //语言种类
   localeList: [
-    { type: 'zh_CN', name: '中文', country: '中国'},
-    { type: 'en', name: 'English', country: 'United States of America'},
-    { type: 'th', name: 'ไทย', country: 'ไทย'},
-    { type: 'lo', name: 'ຂໍ້ຄວາມລາວ', country: 'ລາວ'},
-    { type: 'my', name: 'မြန်မာ', country: 'မြန်မာ'},
+    { type: 'zh_CN', name: '中文', country: '中国' },
+    { type: 'en', name: 'English', country: 'United States of America' },
+    { type: 'th', name: 'ไทย', country: 'ไทย' },
+    { type: 'lo', name: 'ຂໍ້ຄວາມລາວ', country: 'ລາວ' },
+    { type: 'my', name: 'မြန်မာ', country: 'မြန်မာ' },
   ],
   //货币汇率转换列表
-  rateList:[
+  rateList: [
     //人民币
-    {currency:'CNY',symbol:'￥'},
+    { currency: 'CNY', symbol: '￥' },
     //美元
-    { currency:'USD',symbol:'$'},
+    { currency: 'USD', symbol: '$' },
     //泰铢
-    { currency:'THB',symbol:'฿'},
+    { currency: 'THB', symbol: '฿' },
     //老挝基普
-    { currency:'LAK',symbol:'₭'},
+    { currency: 'LAK', symbol: '₭' },
     //缅元
-    { currency:'BUK',symbol:'K'},
+    { currency: 'BUK', symbol: 'K' },
     //马来西亚币
-    { currency:'MYR',symbol:'M.＄'},
+    { currency: 'MYR', symbol: 'M.＄' },
   ],
   //购物车数量
   cartNum: 0,
@@ -67,15 +67,17 @@ const state = { //访问状态对象
   //默认收货地址信息
   defaultAddress: {},
   //当前汇率
-  exchangeRate:{
-    symbol:'￥',
-    rate:1,
-    name:'人民币',
-    currency:'CNY'
+  exchangeRate: {
+    symbol: '￥',
+    rate: 1,
+    name: '人民币',
+    currency: 'CNY'
   },
+  //链接下单-记录加载失败链接
+  orderLink: ''
 }
 const mutations = { //触发状态
-  setPath(state, payload){
+  setPath(state, payload) {
     state.path = payload;
   },
   updateLoadingStatus(state, payload) {
@@ -101,7 +103,7 @@ const mutations = { //触发状态
       });
     }
   },
-  setRatio(state, option){
+  setRatio(state, option) {
     state.ratio = option;
   },
   clearUserinfo(state) {
@@ -127,13 +129,13 @@ const mutations = { //触发状态
     setStore('locale', JSON.stringify(item));
   },
   //货币切换
-  setExchangeRate(state,payload){
-    if(verifyNull(payload)){
+  setExchangeRate(state, payload) {
+    if (verifyNull(payload)) {
       state.exchangeRate = {
-        symbol:payload.symbol,
-        rate:payload.rate,
-        name:payload.name,
-        currency:payload.currency
+        symbol: payload.symbol,
+        rate: payload.rate,
+        name: payload.name,
+        currency: payload.currency
       };
       setStore('exchangeRate', JSON.stringify(state.exchangeRate));
     }
@@ -178,28 +180,36 @@ const mutations = { //触发状态
       state.defaultAddress = JSON.parse(defaultAddress);
     }
   },
+  setOrderLink(state, payload) {
+    state.orderLink = payload;
+    setStore('orderLink', state.orderLink);
+  },
+  deleteOrderLink(state) {
+    state.orderLink = '';
+    removeStore('orderLink');
+  }
 }
 const actions = {
   //汇率查询
-  actionsExchangeRate ({ commit },products) {
-    if(products.currency == 'CNY'){
-      commit('setExchangeRate',{
-        symbol:products.symbol,
-        rate:1,
-        name:products.name,
-        currency:products.currency
+  actionsExchangeRate({ commit }, products) {
+    if (products.currency == 'CNY') {
+      commit('setExchangeRate', {
+        symbol: products.symbol,
+        rate: 1,
+        name: products.name,
+        currency: products.currency
       })
-    }else{
-      getRate('CNY',products.currency).then(
+    } else {
+      getRate('CNY', products.currency).then(
         data => {
-          if(data.success){
-            commit('setExchangeRate',{
-              symbol:products.symbol,
-              rate:parseFloat(data.data.number2),
-              name:products.name,
-              currency:products.currency
+          if (data.success) {
+            commit('setExchangeRate', {
+              symbol: products.symbol,
+              rate: parseFloat(data.data.number2),
+              name: products.name,
+              currency: products.currency
             })
-          }else{
+          } else {
             alert('获取汇率失败');
           }
         }

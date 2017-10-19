@@ -47,8 +47,9 @@
                     <div>
                       <div class="goods-name">
                         <div class="linkOrder">
-                          <p @click="pageJump(sonItem.visitUrl)">{{$i18n.locale == 'zh_CN' ? sonItem.productName : completed[sonItem.translationIndex] || sonItem.productName || '未知'}}</p>
-                          <span v-if="item.mau === 1">（链接下单）</span>
+                          <p @click="pageJump(sonItem.visitUrl,item.mau)" v-if="sonItem.productName != 0">{{$i18n.locale == 'zh_CN' ? sonItem.productName : completed[sonItem.translationIndex] || sonItem.productName}}</p>
+                          <p @click="pageJump(sonItem.visitUrl,item.mau)" v-else>{{$t('orderCenter.unknown')}}</p>
+                          <span v-if="item.mau === 1">（{{$t('confirmOrder.linkOrders')}}）</span>
                         </div>
                       </div>
                       <div class="goods-type">
@@ -69,7 +70,7 @@
                   <div class="ui-text-strong" v-if="sonItem.price">
                     <span class="price-unit">{{$store.state.exchangeRate.symbol}}</span>{{sonItem.price | currency}}
                   </div>
-                  <div class="ui-text-strong" v-else>未知</div>
+                  <div class="ui-text-strong" v-else>{{$t('orderCenter.unknown')}}</div>
                 </div>
               </div>
               <div class="auto-height">
@@ -260,8 +261,12 @@ export default {
         );
       });
     },
-    pageJump(url) {
-      openGoodsLink(this, url, true);
+    pageJump(url,mau) {
+      if(mau === 1){
+        window.open(url);
+      }else{
+        openGoodsLink(this, url, true);
+      }
     },
   }
 }

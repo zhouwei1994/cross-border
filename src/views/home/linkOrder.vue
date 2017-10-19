@@ -2,24 +2,24 @@
   <div class="linkOrderPage">
     <div class="page-adr">
       <div class="page-center ub ub-ac">
-        {{$t('head.home')}}>链接下单
+        {{$t('head.home')}}>{{$t('confirmOrder.linkOrders')}}
       </div>
     </div>
     <div class="page-center linkOrderBox">
       <div class="content">
         <div class="linkOrderPrompt">
-          <span>商品信息解析失败，您可以手动填写商品信息，提交后我们为您购买。</span>
+          <span>{{$t('confirmOrder.productInformationAnalysisFailsYouCanManuallyFillInProductInformation')}}</span>
         </div>
         <div class="linkInputBox">
-          <label>访问链接：</label>
-          <textarea placeholder="请输入完整的商品链接" v-model="visitUrl"></textarea>
+          <label>{{$t('confirmOrder.accessLink')}}：</label>
+          <textarea :placeholder="$t('confirmOrder.pleaseEnterTheCompleteProductLink')" v-model="visitUrl"></textarea>
         </div>
         <div class="linkInputBox">
-          <label>商品留言：</label>
-          <textarea placeholder="请输入您对此商品的需求。如商品的规格、尺寸、大小、数量等信息。" v-model="productText"></textarea>
+          <label>{{$t('confirmOrder.productMessage')}}：</label>
+          <textarea :placeholder="$t('confirmOrder.pleaseEnterYourNeedsForThisTtemSuchAsProductSpecifications')" v-model="productText"></textarea>
         </div>
         <div class="linkBut">
-          <button @click="placeOrder">确定</button>
+          <button @click="placeOrder">{{$t('component.determine')}}</button>
         </div>
       </div>
     </div>
@@ -34,19 +34,27 @@ export default {
       productText: ''
     }
   },
+  computed: {
+    ...mapState([
+      'orderLink',
+      'login'
+    ])
+  },
   methods: {
     ...mapMutations([
       'setOrderSubmitInfo',
+      'deleteOrderLink'
     ]),
     placeOrder() {
       if (this.visitUrl == '') {
-        this.$parent.$refs.confirm.tip(this.$t('请填写访问链接'), false);
+        this.$parent.$refs.confirm.tip(this.$t('confirmOrder.pleaseFillInTheAccessLink'), false);
       } else if (!/http:\/\/|https:\/\//.test(this.visitUrl)) {
-        this.$parent.$refs.confirm.tip(this.$t('请填写正确的访问链接'), false);
+        this.$parent.$refs.confirm.tip(this.$t('confirmOrder.pleaseFillInTheCorrectAccessLink'), false);
       } else if (this.productText == '') {
-        this.$parent.$refs.confirm.tip(this.$t('请填写商品留言'), false);
+        this.$parent.$refs.confirm.tip(this.$t('confirmOrder.pleaseFillInTheMessage'), false);
       } else {
-        const visitUrl = this.visitUrl.replace(/&/g, '%26').replace(/=/g, '%3D').replace(/[?]/g, '%3F').replace(/\//g, '%2F');
+        this.deleteOrderLink();
+        const visitUrl = this.visitUrl.replace(/&/g, '%26');
         this.setOrderSubmitInfo({
           cartList: [
             {
@@ -65,6 +73,15 @@ export default {
         });
         this.$router.push('/confirmOrder');
       }
+    }
+  },
+  mounted() {
+    this.visitUrl = this.orderLink;
+    const _this = this;
+    if (!this.login) {
+      this.$parent.$refs.confirm.show(_this.$t('head.youAreNotLoggedInAreYouLoggedIn'), false, function() {
+        _this.$router.push('/login');
+      });
     }
   }
 }

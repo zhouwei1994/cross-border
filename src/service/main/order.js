@@ -1,13 +1,17 @@
 import {async,verifyNull} from "@/service/model/public"
 import store from '@/config/store'
+import base64 from '@/service/model/base64'
 //提交订单
-var orderByCar =(lang,orderRemark,buyercarId,msg,addressId,thaMsg) =>async('/api/user/order/order_byCar',{
-	lang,orderRemark,buyercarId,msg,addressId,thaMsg
+var orderByCar =(lang,buyercarId,msg,addressId,transport) =>async('/api/user/order/order_byCar',{
+	lang,buyercarId,msg,addressId,transport
 },"POST");
 //立即购买生成订单
-var orderByPro =(lang,orderRemark,msg,addressId,thaMsg,productNo,productName,imgUrl,visitUrl,cnPrice,productNumber,productText) =>async('/api/user/order/order_byPro',{
-	lang,orderRemark,msg,addressId,thaMsg,productNo,productName,imgUrl,visitUrl,cnPrice,productNumber,productText
-},"POST");
+var orderByPro =(lang,msg,addressId,productNo,productName,imgUrl,visitUrl,cnPrice,productNumber,productText,transport) => {
+  visitUrl = new base64().encode(visitUrl);
+  return async('/api/user/order/order_byPro',{
+    lang,msg,addressId,productNo,productName,imgUrl,visitUrl,cnPrice,productNumber,productText,transport
+  },"POST");
+}
 //获取订单信息
 var orderSelect =(lang,orderStatusInfo,pageNo,pageSize) =>async('/api/user/order/order_select',{
 	lang,orderStatusInfo,pageNo,pageSize
@@ -37,9 +41,14 @@ var getRatio =() =>async('/api/open/common/get_ratio',{},'GET',{
   load:false
 });
 //链接下单
-var buyercar =(visitUrl,productText,lang,addressId) =>async('/api/user/buyercar/buyercar_add_manual',{
-  visitUrl,productText,lang,addressId
-},'POST');
+var buyercar =(visitUrl,productText,lang,addressId,msg,transport) => {
+  visitUrl = new base64().encode(visitUrl);
+  console.log(visitUrl);
+  return async('/api/user/buyercar/buyercar_add_manual',{
+    visitUrl,productText,lang,addressId,msg,transport
+  },'POST');
+}
+
 export{
 	orderByCar,
 	orderByPro,

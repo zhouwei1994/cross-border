@@ -18,7 +18,24 @@
         <div class="add-adrress">
           <div class="add-btn bc-do-btn" @click="$router.push('/confirmOrder/address?state=0')">{{$t('confirmOrder.manageTheShippingAddress')}}</div>
         </div>
-        <div class="address-title">{{$t('confirmOrder.paymentMethod')}}</div>
+        <div class="address-title">{{$t('orderCenter.modeOfTransport')}}</div>
+        <div class="radioLine">
+          <div class="radioBox">
+            <div class="radio" :class="{'checked':transport == 1}" @click="transport = 1">
+              <i class="icon"></i>
+              <span>{{$t('buyingGuide.landTransport')}}</span>
+            </div>
+            <div class="radio" :class="{'checked':transport == 2}" @click="transport = 2">
+              <i class="icon"></i>
+              <span>{{$t('buyingGuide.seaShipping')}}</span>
+            </div>
+          </div>
+          <div class="description">
+            {{$t('confirmOrder.landTransportReceivedDaysAfterArrivalShippingArrivedAfterArrivalDays')}}
+            <a class="main-color a-hover" @click="PayJump('/helpCenter/transport')">{{$t('buyingGuide.transportInstructions')}}</a>
+          </div>
+        </div>
+        <div class="address-title line-p-t">{{$t('confirmOrder.paymentMethod')}}</div>
         <div class="line line-right">
           <span class="ic-selected"></span>{{$t('confirmOrder.lineToPayBankCardTransferTheSpecificOperationPleaseReferTo')}}&nbsp;
           <a class="main-color a-hover" @click="PayJump('/helpCenter/payType')">{{$t('confirmOrder.paymentMethod')}}</a>
@@ -43,10 +60,10 @@
               </div>
               <div>
                 <div class="goods-name">
-                  <div class="name" @click="pageJump(item.visitUrl)" v-if="orderSubmitInfo.type != 2">{{$i18n.locale == 'zh_CN' ? item.name : completed[item.translationIndex] || item.name}}</div>
+                  <div class="name" @click="pageJump(item.visitUrl,orderSubmitInfo.type)" v-if="orderSubmitInfo.type != 2">{{$i18n.locale == 'zh_CN' ? item.name : completed[item.translationIndex] || item.name}}</div>
                   <div class="linkOrder" v-else>
-                    <p @click="pageJump(item.visitUrl)">未知</p>
-                    <span>（链接下单）</span>
+                    <p @click="pageJump(item.visitUrl,orderSubmitInfo.type)">{{$t('orderCenter.unknown')}}</p>
+                    <span>（{{$t('confirmOrder.linkOrders')}}）</span>
                   </div>
                 </div>
                 <div class="goods-type">
@@ -67,12 +84,12 @@
               <span class="">{{$store.state.exchangeRate.symbol}}</span>{{item.price | currency}}
             </div>
             <div class="goods-price" v-else>
-              未知
+              {{$t('orderCenter.unknown')}}
             </div>
             <div class="goods-num" v-if="orderSubmitInfo.type != 2">{{item.productNumber}}</div>
-            <div class="goods-num" v-else>未知</div>
+            <div class="goods-num" v-else>{{$t('orderCenter.unknown')}}</div>
             <div class="goods-total" v-if="orderSubmitInfo.type != 2">{{$store.state.exchangeRate.symbol}}{{item.price * item.productNumber | currency}}</div>
-            <div class="goods-total" v-else>未知</div>
+            <div class="goods-total" v-else>{{$t('orderCenter.unknown')}}</div>
           </div>
         </div>
         <div class="order-info">
@@ -88,7 +105,7 @@
             <div>
               <span>{{$t('confirmOrder.numberOfGoods')}}：</span>
               <span v-if="orderSubmitInfo.type != 2">{{orderSubmitInfo.allNum}}{{$t('confirmOrder.pieces')}}</span>
-              <span v-else>未知</span>
+              <span v-else>{{$t('orderCenter.unknown')}}</span>
             </div>
             <div>
               <span>{{$t('confirmOrder.totalAmount')}}：</span>
@@ -155,10 +172,11 @@ export default {
       rulesView: false,
       translation: [],
       completed: [],
+      transport:1
     }
   },
   mounted() {
-    this.pageData();
+    this.pageLoad();
     let translationStatistics = new Array();
     let translationIndex = 0;
     var orderSubmit = JSON.parse(JSON.stringify(this.orderSubmitInfo.cartList));
@@ -173,15 +191,9 @@ export default {
         translationIndex++;
       }
     }
-    console.log(orderSubmit);
     this.orderSubmit = orderSubmit;
     this.translation = translationStatistics;
-    this.getTranslate(translationStatistics).then(
-      data => {
-        this.completed = data;
-      }
-    )
-    console.log(this.orderSubmitInfo);
+    this.translate();
   },
   computed: {
     ...mapState([
@@ -195,7 +207,7 @@ export default {
       'setAddressInfo',
       'getAddressInfo'
     ]),
-    pageData() {
+    pageLoad(){
       if (!this.orderSubmitInfo.total) {
         this.getOrderSubmitInfo();
       }
@@ -203,6 +215,17 @@ export default {
         this.getAddressInfo();
       }
       this.getAddress();
+    },
+    pageData() {
+      this.pageLoad();
+      this.translate();
+    },
+    translate(){
+      this.getTranslate(this.translation).then(
+        data => {
+          this.completed = data;
+        }
+      )
     },
     getAddress() {
       userSelectDefaultAddress(this.$store.state.locale.type).then(
@@ -215,22 +238,17 @@ export default {
       );
     },
     getorderByCar() {
-      let id = [], msg = '', thaMsg = '';
+      let id = [];
       let cartList = this.orderSubmitInfo.cartList[0];
       for (var item of this.orderSubmitInfo.cartList) {
         id.push(item.objId);
       }
       id = id.join(',');
-      if (this.defaultAddress.lang == 'th') {
-        thaMsg = this.remark;
-      } else {
-        msg = this.remark;
-      }
       if (!this.defaultAddress.objId) {
         this.$parent.$refs.confirm.tip('confirmOrder.shippingAddressIsEmpty', false);
       } else {
         if (this.orderSubmitInfo.type == 0) {
-          orderByCar(this.defaultAddress.lang, '', id, msg, this.defaultAddress.objId, thaMsg).then(
+          orderByCar(this.defaultAddress.lang, id, this.remark, this.defaultAddress.objId,this.transport).then(
             data => {
               if (data.success) {
                 this.$parent.cartNum();
@@ -241,7 +259,7 @@ export default {
             }
           );
         } else if (this.orderSubmitInfo.type == 1) {
-          orderByPro(this.defaultAddress.lang, '', msg, this.defaultAddress.objId, thaMsg, cartList.productNo, cartList.name, cartList.imgUrl, cartList.visitUrl, cartList.price, cartList.productNumber, cartList.productText.join('#')).then(
+          orderByPro(this.defaultAddress.lang, this.remark, this.defaultAddress.objId, cartList.productNo, cartList.name, cartList.imgUrl, cartList.visitUrl, cartList.price, cartList.productNumber, cartList.productText.join('#'),this.transport).then(
             data => {
               if (data.success) {
                 this.$router.push('/confirmSucceed/' + data.data.objId);
@@ -252,7 +270,7 @@ export default {
           );
         } else if (this.orderSubmitInfo.type == 2) {
           console.log(cartList.visitUrl);
-          buyercar(cartList.visitUrl, cartList.productText.join('#'),this.defaultAddress.lang,this.defaultAddress.objId).then(
+          buyercar(cartList.visitUrl, cartList.productText.join('#'), this.defaultAddress.lang, this.defaultAddress.objId,this.remark,this.transport).then(
             data => {
               if (data.success) {
                 this.$router.push('/confirmSucceed/' + data.data.objId);
@@ -265,8 +283,13 @@ export default {
     PayJump(url) {
       window.open(document.location.protocol + '//' + window.location.host + url);
     },
-    pageJump(url) {
-      openGoodsLink(this, url, true);
+    pageJump(url,type) {
+      console.log(url);
+      if(type === 2){
+        window.open(url);
+      }else{
+        openGoodsLink(this, url, true);
+      }
     },
   }
 }
@@ -275,12 +298,29 @@ export default {
 @import '../../style/components/main';
 @import '../../style/order';
 .confirm-order {
-  .content {}
+  .content {
+
+  }
 }
 
 .order-detail {
   padding: 0 30px;
   background: #FFFFFF;
+  .radioLine {
+    font-size: 16px;
+    color: #666666;
+    margin-top: 24px;
+    .radioBox {
+      display: flex;
+      .radio {
+        background-size: 15px 15px;
+        margin-right: 30px;
+      }
+    }
+    .description {
+      margin-top: 20px;
+    }
+  }
   .order-info {
     line-height: 1;
     padding: 0 38px 0 44px;

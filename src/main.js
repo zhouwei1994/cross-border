@@ -59,4 +59,4 @@ window.$Vue = new Vue({
   i18n
 }).$mount('#app');
 //store获取本地默认数据
-$Vue.storeAsny(['userinfo', 'indexSliderimgList', 'login','locale','exchangeRate'], true);
+$Vue.storeAsny(['userinfo', 'indexSliderimgList', 'login','locale','exchangeRate','orderLink'], true);

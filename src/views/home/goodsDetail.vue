@@ -308,6 +308,7 @@ export default {
   methods: {
     ...mapMutations([
       'setOrderSubmitInfo',
+      'setOrderLink'
     ]),
     pageData() {
       const _this = this;
@@ -548,11 +549,13 @@ export default {
               this.iframeLoading = true;
               this.iframeState = true;
             }
-          } else if (data.state == 70001) {
-            this.notSupport = true;
-            this.pageState = false;
-            _this.loading = false;
-          } else if (data.state == 70003) {
+          }
+          //   else if (data.state == 70001) {
+          //   this.notSupport = true;
+          //   this.pageState = false;
+          //   _this.loading = false;
+          // }
+          else if (data.state == 70003) {
             if (this.requestNum < 5) {
               setTimeout(function() {
                 _this.detailInfo(_this.goodsUrl);
@@ -567,6 +570,8 @@ export default {
             _this.$parent.$refs.confirm.tip(data.msg, false);
             this.pageState = false;
             _this.loading = false;
+            _this.setOrderLink(_this.jumpUrl);
+            _this.$router.push('/linkOrder');
           }
         }
       );

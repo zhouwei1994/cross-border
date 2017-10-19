@@ -31,7 +31,8 @@
         </div>
         <div>
           <span>{{$t('goodsTypeDetail.productName')}}</span>
-          <span>：&nbsp;{{$i18n.locale == 'zh_CN' ? productName[0] : translated || productName[0]}}
+          <span>：<span v-if="productName[0] != 0">&nbsp;{{$i18n.locale == 'zh_CN' ? productName[0] : translated || productName[0]}}</span>
+          <span v-else>{{$t('orderCenter.unknown')}}</span>
             <span v-if="productName.length >1">{{$t('confirmSucceed.suchAsPiecesOfGoods') | replace(productName.length)}}</span>
           </span>
         </div>

@@ -148,7 +148,6 @@ export default {
           arrayText.push({ index: 0, text: translation });
           arrayText = JSON.stringify(arrayText).replace(/[%]/g,'%25').replace(/[+]/g,'%2B').replace(/[&]/g,'%26').replace(/[=]/g,'%3D').replace(/[#]/g,'%23').replace(/[?]/g,'%3F').replace(/[/]/g,'%2F');
           // if (this.$i18n.locale != 'zh_CN') {
-            console.log(arrayText);
             translate(arrayText, target, source, load).then(
               data => {
                 if (data.success) {
@@ -164,7 +163,6 @@ export default {
           // }
         } else if (this.$i18n.locale != 'zh_CN' && translation.length > 0) {
           translation = JSON.stringify(translation).replace(/[%]/g,'%25').replace(/[+]/g,'%2B').replace(/[&]/g,'%26').replace(/[=]/g,'%3D').replace(/[#]/g,'%23').replace(/[?]/g,'%3F').replace(/[/]/g,'%2F');
-          console.log(translation);
           translate(translation, this.$i18n.locale, 'zh-CN', load).then(
             data => {
               if (data.success) {
@@ -226,7 +224,10 @@ export default {
       }
       //获取值
       function setStore(name, func) {
-        let local = JSON.parse(sessionStorage.getItem(name));
+        let local = sessionStorage.getItem(name);
+        if(!/^http:\/\/|https:\/\//.test(local)){
+          local = JSON.parse(local);
+        }
         _this.$store.commit(func, local);
       }
     }

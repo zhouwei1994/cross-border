@@ -1,10 +1,10 @@
 <template>
   <div class="index">
     <!--<div class="page-adr" v-if='pageTag'>
-        			<div class="page-center ub ub-ac">
-        				{{pageTag}}
-        			</div>
-        		</div>-->
+          			<div class="page-center ub ub-ac">
+          				{{pageTag}}
+          			</div>
+          		</div>-->
     <div class="nav ub page-center">
       <ul class="goods-type-item">
       </ul>
@@ -103,7 +103,7 @@ export default {
     },
     openGoods(link) {
       console.log(123);
-      openGoodsLink(this, link,true);
+      openGoodsLink(this, link, true);
     },
     //跳转商品分类
     jumpGoodsType(name) {
@@ -116,6 +116,7 @@ export default {
 @import '../../style/components/main';
 @import '../../style/goodsType';
 @import '../../style/goodsList';
+@import '../../../node_modules/swiper/dist/css/swiper.min.css';
 .index {
   .nav {
     height: 549px;
@@ -150,52 +151,48 @@ export default {
         }
       }
     }
-
   }
 }
 
 .price-unit {
   font-size: 12px;
 }
-</style>
-<style lang="scss">
-.index {
-  .swiper-container-horizontal {
-    .swiper-pagination.swiper-pagination-bullets {
-      .swiper-pagination-bullet {
-        margin: 0 7px;
-        background-color: #83e9c9;
-      }
-      .swiper-pagination-bullet-active {
-        background-color: #fff;
-      }
+.swiper-container-horizontal {
+  .swiper-pagination.swiper-pagination-bullets {
+    .swiper-pagination-bullet {
+      margin: 0 7px;
+      background-color: #83e9c9;
     }
-    .swiper-button-prev,
-    .swiper-button-next {
-      background-size: 9px 15px;
-      background-position: center center;
-      pointer-events: auto !important;
-      background-color: rgba(0, 0, 0, 0.3);
-      border-radius: 50%;
-      width: 44px;
-      opacity: 0;
-      transition: all 0.5s;
-    }
-    .swiper-button-prev {
-      background-image: url(../../img/index/sy_bannar_icon_zuo.png);
-    }
-    .swiper-button-next {
-      background-image: url(../../img/index/sy_bannar_icon_you.png);
+    .swiper-pagination-bullet-active {
+      background-color: #fff;
     }
   }
-  .swiper-container-horizontal:hover {
-    .swiper-button-prev,
-    .swiper-button-next {
-      opacity: 1;
-    }
-    div.swiper-button-disabled {
-      opacity: 0;
-    }
+  .swiper-button-prev,
+  .swiper-button-next {
+    background-size: 9px 15px;
+    background-position: center center;
+    pointer-events: auto !important;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 44px;
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  .swiper-button-prev {
+    background-image: url(../../img/index/sy_bannar_icon_zuo.png);
+  }
+  .swiper-button-next {
+    background-image: url(../../img/index/sy_bannar_icon_you.png);
+  }
+}
+
+.swiper-container-horizontal:hover {
+  .swiper-button-prev,
+  .swiper-button-next {
+    opacity: 1;
+  }
+  div.swiper-button-disabled {
+    opacity: 0;
   }
 }
 </style>
