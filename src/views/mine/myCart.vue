@@ -31,7 +31,9 @@
                 </div>
                 <div>
                   <div class="goods-name">
-                    <div @click="pageJump(item.visitUrl)">{{$i18n.locale == 'zh_CN' ? item.name : completed[item.translationIndex]}}</div>
+                    <div class="linkOrder" @click="pageJump(item.visitUrl)">
+                      <p>{{$i18n.locale == 'zh_CN' ? item.name : completed[item.translationIndex]}}</p>
+                    </div>
                   </div>
                   <div class="goods-type">
                     <div class="goods_Box" :style="{zIndex:100-index}">

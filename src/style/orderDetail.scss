@@ -43,11 +43,15 @@
         font-size: rem(16);
         color:#666;
         tr{
-            height: 34px;
             line-height: 150%;
+            td {
+                vertical-align: top;
+                padding-bottom: 7px;
+            }
             td:first-child{
                 text-align: right;
                 white-space: nowrap;
+                
                 &::after{
                     content: '：';
                     margin: 0 2px;

@@ -38,8 +38,12 @@
           </form>
           <form class="register" v-show="!loginView" data-vv-scope="register">
             <div class="inputBox" :class="{'getFocus':nameFocus}">
-              <input type="text" @focus="nameFocus =true" @blur="nameVerification();nameFocus = false" v-model="registerData.username" :placeholder="$t('login.username')" />
+              <input type="text" @focus="nameFocus =true" @blur="nameFocus = false" v-model="registerData.username" :placeholder="$t('login.username')" />
               <span class="state" :class="{'ic-true': VerificationState.username == 3}"></span>
+            </div>
+            <div class="inputBox" :class="{'getFocus':custFocus}">
+              <input type="text" @focus="custFocus =true" @blur="custVerification();custFocus = false" v-model="registerData.custId" :placeholder="$t('login.custId')" />
+              <span class="state" :class="{'ic-true': VerificationState.custId == 3}"></span>
             </div>
             <div class="inputBox" :class="{'getFocus':emailFocus}">
               <input type="text" @focus="emailFocus =true" @blur="emailVerification();emailFocus = false" v-model="registerData.email" :placeholder="$t('login.email')" />
@@ -471,13 +475,15 @@ export default {
         username: '',
         email: '',
         code: '',
-        pwd: ''
+        pwd: '',
+        custId:''
       },
       VerificationState: {
         username: 0,
         email: 0,
         code: 0,
-        pwd: 0
+        pwd: 0,
+        custId:0
       },
       codeS: '',
       codeText: 'login.getVerificationVode',
@@ -489,6 +495,7 @@ export default {
       emailFocus: false,
       codeFocus: false,
       passFocus: false,
+      custFocus: false,
     }
   },
   created() {
@@ -570,7 +577,7 @@ export default {
         this.VerificationState.username = 1;
         this.errTip = this.$t('login.pleaseEnterUserName');
         return false;
-      } else if (!/^\S{4,}$/.test(registerData.username)) {
+      } else if (registerData.username.length < 4) {
         this.VerificationState.username = 2;
         this.errTip = this.$t('login.theUserNameIsNotLessThan4Characters');
         return false;
@@ -603,7 +610,7 @@ export default {
       //是否同意协议
       if (this.affirm && this.nameVerification() && this.emailVerification() && this.codeVerification() && this.pwdVerification()) {
         //判断注册模块是否验证正确
-        register(_this.registerData.username, _this.registerData.email, _this.registerData.code, _this.registerData.pwd).then(
+        register(_this.registerData.username, _this.registerData.email, _this.registerData.code, _this.registerData.pwd,_this.registerData.custId).then(
           data => {
             if (data.success) {
               //注册成功
@@ -741,11 +748,11 @@ export default {
   }
   .login-box {
     width: 370px;
-    height: 420px;
     float: right;
     background: #fff;
     margin-top: 111px;
     margin-right: 50px;
+    padding-bottom: 10px;
     .near-center {
       display: flex;
       &>div {

@@ -20,9 +20,9 @@ if (process.env.NODE_ENV == 'development') {
 	routerMode = 'history';
 	fileUrl = '';
 }else{
-	// baseUrl = 'http://www.tpimkp.com/mall/';
-  // iframeUrl = 'http://www.tpimkp.com/proxy/?';
-  baseUrl = 'http://www.tpimkp.com:74/mall/';
+// 	baseUrl = 'http://www.tpimkp.com/mall/';
+//   iframeUrl = 'http://www.tpimkp.com/proxy/?';
+  	baseUrl = 'http://www.tpimkp.com:74/mall/';
 	iframeUrl = 'http://www.tpimkp.com:74/proxy/?';
 	routerMode = 'history';
 	fileUrl = '';

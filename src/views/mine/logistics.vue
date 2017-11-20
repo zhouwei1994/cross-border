@@ -43,7 +43,9 @@
           <tr>
             <td>{{$t('orderDetail.contactInformation')}}</td>
             <td>{{address.phone}}</td>
-            <td>{{$t('mineCenter.zipCode')}}：</td>
+          </tr>
+          <tr>
+            <td>{{$t('mineCenter.zipCode')}}</td>
             <td v-if="address.postcode">{{address.postcode}}</td>
             <td v-else>{{$t('mineCenter.nothing')}}</td>
           </tr>
@@ -166,10 +168,6 @@ export default {
   .logistics-info {
     font-size: rem(14);
     color: #666;
-    tr {
-      height: 36px;
-      line-height: 36px;
-    }
   }
 }
 

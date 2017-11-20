@@ -87,6 +87,8 @@ export default {
     if (locale) {
       this.languageSetUp(JSON.parse(locale));
     }
+    
+
   }
 }
 </script>

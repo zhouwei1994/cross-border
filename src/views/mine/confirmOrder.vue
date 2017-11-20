@@ -255,6 +255,8 @@ export default {
                 this.$router.push('/confirmSucceed/' + data.data.objId);
               } else if (data.msg == "无商品数据") {
                 this.$parent.$refs.confirm.tip(this.$t('confirmOrder.theProductDoesNotExist'), false);
+              }else{
+                this.$parent.$refs.confirm.tip(data.msg, false);
               }
             }
           );
@@ -265,6 +267,8 @@ export default {
                 this.$router.push('/confirmSucceed/' + data.data.objId);
               } else if (data.msg == "无商品数据") {
                 this.$parent.$refs.confirm.tip(this.$t('confirmOrder.theProductDoesNotExist'), false);
+              }else{
+                this.$parent.$refs.confirm.tip(data.msg, false);
               }
             }
           );
@@ -274,6 +278,8 @@ export default {
             data => {
               if (data.success) {
                 this.$router.push('/confirmSucceed/' + data.data.objId);
+              }else{
+                this.$parent.$refs.confirm.tip(data.msg, false);
               }
             }
           );

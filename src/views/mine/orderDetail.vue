@@ -65,6 +65,11 @@
             <td>{{$t('orderDetail.contactInformation')}}</td>
             <td>{{addressBO.phone}}</td>
           </tr>
+          <tr>
+            <td>{{$t('mineCenter.zipCode')}}</td>
+            <td v-if="addressBO.postcode">{{addressBO.postcode}}</td>
+            <td v-else>{{$t('mineCenter.nothing')}}</td>
+          </tr>
         </table>
         <div class="order-lists">
           <div class="o-goods-table">
@@ -139,7 +144,7 @@
                     <div class="bc-do-btn" v-if="orderMainBO.orderStatusInfo == 3202" @click="orderUpdate(orderMainBO.objId,3002)">{{$t('orderCenter.confirmReceipt')}}</div>
                     <div class="o-min">
                       <a class="c-o-hover" v-if="orderMainBO.orderStatusInfo == 3101 || orderMainBO.orderStatusInfo == 3102" @click="orderUpdate(orderMainBO.objId,3000)">{{$t('orderCenter.cancelOrder')}}</a>
-                      <a class="c-o-hover" v-if="orderMainBO.orderStatusInfo == 3202" @click="$router.push('/logistics/'+orderMainBO.objId+'?lang='+$route.query.lang);">{{$t('orderCenter.viewLogistics')}}</a>
+                      <a class="c-o-hover" v-if="orderMainBO.orderStatusInfo == 3202" @click="$router.push('/logistics/'+orderMainBO.orderNo);">{{$t('orderCenter.viewLogistics')}}</a>
                       <a class="c-o-hover" v-if="orderMainBO.orderStatusInfo == 3402 || orderMainBO.orderStatusInfo == 3301 || orderMainBO.orderStatusInfo == 3100" @click="deleteOrd(orderMainBO.objId)">{{$t('orderCenter.deleteOrder')}}</a>
                       <router-link class="pay c-o-hover" to="/helpCenter/payType" target="_blank" v-if="orderMainBO.orderStatusInfo == 3102">{{$t('confirmOrder.paymentMethod')}}</router-link>
                     </div>
@@ -170,15 +175,17 @@
             </div>
             <div>
               <span>{{$t('confirmOrder.serviceCharge')}}：</span>
-              <span v-if="orderMainBO.orderStatusInfo == 3101">{{$t('orderCenter.toBeConfirmed')}}</span>
-              <span v-else>{{$store.state.exchangeRate.symbol}}{{orderMainBO.serverCost | currency}}</span>
+              <span v-if="orderMainBO.orderStatusInfo == 3101 && orderMainBO.productTotalPrice">{{$store.state.exchangeRate.symbol}}{{orderMainBO.productTotalPrice | ratio | currency}}</span>
+              <span v-else-if="orderMainBO.productTotalPrice">{{$store.state.exchangeRate.symbol}}{{orderMainBO.serverCost | currency}}</span>
+              <span v-else>{{$t('orderCenter.unknown')}}</span>
             </div>
             <div class="order-total">
               <span>{{$t('confirmOrder.amountsPayable')}}：</span>
-              <span v-if="orderMainBO.orderTotalPrice">{{$store.state.exchangeRate.symbol}}{{orderMainBO.orderTotalPrice | currency}}</span>
+              <span v-if="orderMainBO.orderStatusInfo == 3101">{{$t('orderCenter.toBeConfirmed')}}</span>
+              <span v-else-if="orderMainBO.orderTotalPrice">{{$store.state.exchangeRate.symbol}}{{orderMainBO.orderTotalPrice | currency}}</span>
               <span v-else>{{$t('orderCenter.unknown')}}</span>
             </div>
-            <div class="tip" v-if="orderMainBO.orderStatusInfo != 3101">
+            <div class="tip">
               <div>
                 （{{$t('confirmOrder.serviceFee')}}）
                 <div class="goodsParameter">

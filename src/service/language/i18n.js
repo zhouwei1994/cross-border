@@ -89,6 +89,7 @@ export default new VueI18n({
         messageHasBeenSent: '邮件已发送',
         agreeAndContinue: '同意并继续',
         loggingIn: '正在登录...',
+        custId:'唛头'
       },
       //forget
       forget: {
@@ -449,6 +450,7 @@ export default new VueI18n({
         messageHasBeenSent: 'Mail sent',
         agreeAndContinue: 'Agree and continue',
         loggingIn: 'Is the login...',
+        custId: 'Mark'
       },
       //forget
       forget: {
@@ -792,7 +794,7 @@ export default new VueI18n({
         userTermsOfService: 'เงื่อนไขการบริการลูกค้า',
         email: 'อีเมล',
         password: 'รหัสผ่าน',
-        username: 'ชื่อผู้ใช้',
+        username: 'ชื่อ-นามสกุล',
         verificationCode: 'ยืนยันรหัสผ่าน',
         IHaveReadAndAgreed: 'ฉันได้อ่านและยอมรับแล้ว',
         getVerificationVode: 'รับรหัสผ่านยืนยัน',
@@ -809,6 +811,7 @@ export default new VueI18n({
         messageHasBeenSent: 'อีเมลที่ส่งแล้ว',
         agreeAndContinue: 'ยอมรับและดำเนินการต่อ',
         loggingIn: 'กำลังเข้าสู่ระบบ...',
+        custId: 'รหัสสมาชิก'
       },
       //forget
       forget: {
@@ -1169,6 +1172,7 @@ export default new VueI18n({
         messageHasBeenSent: 'ອີເມລທີ່ສົ່ງແລ້ວ',
         agreeAndContinue: 'ຍອມຮັບແລະດໍາເນີນຕໍ່',
         loggingIn: 'ກຳລັງເຂົ້າສູ່ລະບົບ...',
+        custId: 'ຫມາຍເອົາຫົວ'
       },
       //forget
       forget: {
@@ -1527,6 +1531,7 @@ export default new VueI18n({
         messageHasBeenSent: 'စာပို ့ျပီးစီးပါသည္။',
         agreeAndContinue: 'သေဘာတူျခင္းႏွင့္ဆက္လက္လုပ္ေဆာင္ရန္',
         loggingIn: 'လုပ္ေဆာင္ေနသည္ ခဏေစာင့္ဆိုင္းပါ...',
+        custId: 'Marks'
       },
       //forget
       forget: {

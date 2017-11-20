@@ -26,7 +26,7 @@
               <li @click="$router.push({'path':'/mineCenter/myInfo'})">{{$t('head.personalInformation')}}</li>
               <li @click="$router.push({'path':'/mineCenter/collectList'})">{{$t('head.myCollection')}}</li>
               <li @click="$router.push({'path':'/mineCenter/address'})">{{$t('head.shippingAddress')}}</li>
-              <li @click="$router.push({'path':'/mineCenter/upd  atePwd'})">{{$t('head.changePassword')}}</li>
+              <li @click="$router.push({'path':'/mineCenter/updatePwd'})">{{$t('head.changePassword')}}</li>
               <li @click="signOut">{{$t('head.signOut')}}</li>
             </ul>
           </div>

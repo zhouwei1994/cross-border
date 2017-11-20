@@ -99,6 +99,7 @@ export default {
   },
   created() {
     this.langVal();
+    document.body.clientHeight
   },
   computed: {
 
@@ -308,7 +309,7 @@ export default {
 .orderAddress {
   background-color: #FFF;
   width: 900px;
-  max-height: 800px;
+  max-height: 90%;
   overflow-y: auto;
 }
 

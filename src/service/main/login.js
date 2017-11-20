@@ -1,10 +1,10 @@
 import {async,verifyNull} from "@/service/model/public"
 import md5 from 'js-md5'
 //注册
-var register =(userName,email,code,password) =>{ 
+var register = (userName, email, code, password, custId) =>{ 
 	password = md5(password);
 	return async('api/open/common/register',{
-	  userName,email,code,password
+		userName, email, code, password, custId
 	},"POST")
 }
 //获取验证码

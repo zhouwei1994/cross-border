@@ -70,7 +70,7 @@
         </div>
       </div>
       <div class="goods-list ui-p-r" v-if="goodsTypeList.length > 0">
-        <div class="goods" :class="{'goodsfour':(index+1)%4 == 0}" :productNo='goods.productNo' v-for="(goods,index) in goodsTypeList" @click='openGoodsLink(index)'>
+        <div class="goods" :class="{'goodsfour':(index+1)%4 == 0}" :productNo='goods.productNo' v-for="(goods,index) in goodsTypeList" @click='openGoodsLink(index,goods)'>
           <img v-lazyload="goods.pic_url">
           <div class="goods-detail">
             <div class="goods-name" v-if="dataType == 0" v-html="$i18n.locale == 'zh_CN' ? goods.title : completed[goods.translationIndex] || goods.title"></div>
@@ -104,12 +104,12 @@
   </div>
 </template>
 <script>
-import { verifyNull } from '@/service/model/public'
-import { iframeUrl } from '@/config/env.js'
-import { search, translate } from '@/service/main/goods'
-import { openGoodsLink } from '@/service/main/index'
-import loading from '@/components/common/loading/loading'
-import pageBox from '@/components/common/page'
+import { verifyNull } from "@/service/model/public";
+import { iframeUrl } from "@/config/env.js";
+import { search, translate } from "@/service/main/goods";
+import { openGoodsLink } from "@/service/main/index";
+import loading from "@/components/common/loading/loading";
+import pageBox from "@/components/common/page";
 export default {
   components: {
     loading,
@@ -122,36 +122,36 @@ export default {
       pageSize: 50,
       pageNo: 1,
       totalPage: 1,
-      sort: 'default',//筛选
-      psort: 'commend',//筛选
+      sort: "default", //筛选
+      psort: "commend", //筛选
       dataType: 0,
       priceScreen: [
         {
-          type: 'price-asc',
-          name: 'goodsTypeDetail.pricesRangeFromLowToHigh',
+          type: "price-asc",
+          name: "goodsTypeDetail.pricesRangeFromLowToHigh"
         },
         {
-          type: 'price-desc',
-          name: 'goodsTypeDetail.pricesRangeFromHighToLow',
+          type: "price-desc",
+          name: "goodsTypeDetail.pricesRangeFromHighToLow"
         },
         {
-          type: 'total-asc',
-          name: 'goodsTypeDetail.theTotalPriceFromLowToHigh',
+          type: "total-asc",
+          name: "goodsTypeDetail.theTotalPriceFromLowToHigh"
         },
         {
-          type: 'total-desc',
-          name: 'goodsTypeDetail.theTotalPriceFromHighToLow',
-        },
+          type: "total-desc",
+          name: "goodsTypeDetail.theTotalPriceFromHighToLow"
+        }
       ],
-      minPrice: '',//金额筛选
-      maxPrice: '',//金额筛选
+      minPrice: "", //金额筛选
+      maxPrice: "", //金额筛选
       mall: true,
       taobao: true,
       pageState: false,
       notFound: false,
       translation: [],
-      completed: [],
-    }
+      completed: []
+    };
   },
   mounted() {
     this.goodsListInfo(1);
@@ -163,16 +163,16 @@ export default {
   },
   watch: {
     goodsText() {
-      this.sort = 'default';
-      this.psort = 'commend';
-      this.minPrice = '';
-      this.maxPrice = '';
+      this.sort = "default";
+      this.psort = "commend";
+      this.minPrice = "";
+      this.maxPrice = "";
       this.goodsListInfo(1);
     },
     minPrice(val) {
       let minPrice = parseInt(val);
       if (!/[0-9]/.test(minPrice)) {
-        this.minPrice = '';
+        this.minPrice = "";
       } else {
         this.minPrice = minPrice;
       }
@@ -180,19 +180,17 @@ export default {
     maxPrice(val) {
       let maxPrice = parseInt(val);
       if (!/[0-9]/.test(maxPrice)) {
-        this.maxPrice = '';
+        this.maxPrice = "";
       } else {
         this.maxPrice = maxPrice;
       }
-    },
+    }
   },
   methods: {
     pageData() {
-      this.getTranslate(this.translation).then(
-        data => {
-          this.completed = data;
-        }
-      )
+      this.getTranslate(this.translation).then(data => {
+        this.completed = data;
+      });
     },
     goodsListInfo(val) {
       if (val) {
@@ -200,101 +198,127 @@ export default {
       }
       let translationStatistics = new Array();
       let translationIndex = 0;
-      let tab = 'all', goodsText = this.goodsText;
+      let tab = "all",
+        goodsText = this.goodsText;
       let rate = this.$store.state.exchangeRate.rate;
       const _this = this;
-      const filter = 'reserve_price[' + this.minPrice / rate + ',' + this.maxPrice / rate + ']';
-      if (this.mall && this.taobao || !this.mall && !this.taobao) {
-        tab = 'all';
+      const filter =
+        "reserve_price[" +
+        this.minPrice / rate +
+        "," +
+        this.maxPrice / rate +
+        "]";
+      if ((this.mall && this.taobao) || (!this.mall && !this.taobao)) {
+        tab = "all";
       } else if (this.mall) {
-        tab = 'mall';
+        tab = "mall";
       } else if (this.taobao) {
-        tab = 'all';
-        goodsText = goodsText + '-tmall';
+        tab = "all";
+        goodsText = goodsText + "-tmall";
       }
-      if(this.$route.query.state == 1){
+      if (this.$route.query.state == 1) {
         request(goodsText);
-      }else{
-        _this.getTranslate(goodsText,true,true,'zh_CN','auto').then(
+      } else {
+        _this.getTranslate(goodsText, true, true, "zh_CN", "auto").then(
           data => {
             request(data);
           },
           () => {
             request(goodsText);
           }
-        )
-      }
-      function request(val) {
-        search(val, (_this.pageNo - 1) * _this.pageSize, _this.pageSize, _this.sort, filter, tab, _this.psort).then(
-          data => {
-            if (data.mods) {
-              if (data.mods.itemlist) {
-                if (data.mods.itemlist.data) {
-                  for (var item of data.mods.itemlist.data.auctions) {
-                    translationStatistics.push({ index: translationIndex, text: item.title.replace(/[<span class=H>]/g, '').replace(/[</span>]/g, '') });
-                    item.translationIndex = translationIndex;
-                    translationIndex++;
-                  }
-                  document.body.scrollTop = 0;
-                  _this.translation = translationStatistics;
-                  _this.goodsTypeList = data.mods.itemlist.data.auctions;
-                  _this.dataType = 0;
-                  _this.pageState = true;
-                  _this.getTranslate( _this.translation).then(
-                    data => {
-                      _this.completed = data;
-                    }
-                  )
-                } else {
-                  _this.goodsTypeList = [];
-                  _this.dataType = 1;
-                  _this.pageState = true;
-                }
-              } else if (data.mods.grid) {
-                if (data.mods.grid.data) {
-                  for (var item of data.mods.grid.data.spus) {
-                    var title = item.title;
-                    for (var tag of item.tag_info) {
-                      title += ' ' + tag.tag;
-                    }
-                    translationStatistics.push({ index: translationIndex, text: title });
-                    item.translationIndex = translationIndex;
-                    translationIndex++;
-                  }
-                  document.body.scrollTop = 0;
-                  _this.translation = translationStatistics;
-                  _this.goodsTypeList = data.mods.grid.data.spus;
-                  _this.dataType = 1;
-                  _this.pageState = true;
-                  _this.getTranslate(_this.translation).then(
-                    data => {
-                      _this.completed = data;
-                    }
-                  )
-                } else {
-                  _this.goodsTypeList = [];
-                  _this.dataType = 1;
-                  _this.pageState = true;
-                }
-              } else {
-                _this.pageState = false;
-                _this.notFound = true;
-              }
-              if (data.mods.pager.data) {
-                _this.totalPage = data.mods.pager.data.totalPage;
-              }
-            }
-          }
         );
       }
+      function request(val) {
+        search(
+          val,
+          (_this.pageNo - 1) * _this.pageSize,
+          _this.pageSize,
+          _this.sort,
+          filter,
+          tab,
+          _this.psort
+        ).then(data => {
+          if (data.mods) {
+            if (data.mods.itemlist) {
+              if (data.mods.itemlist.data) {
+                for (var item of data.mods.itemlist.data.auctions) {
+                  translationStatistics.push({
+                    index: translationIndex,
+                    text: item.title
+                      .replace(/[<span class=H>]/g, "")
+                      .replace(/[</span>]/g, "")
+                  });
+                  item.translationIndex = translationIndex;
+                  translationIndex++;
+                }
+                document.body.scrollTop = 0;
+                _this.translation = translationStatistics;
+                _this.goodsTypeList = data.mods.itemlist.data.auctions;
+                _this.dataType = 0;
+                _this.pageState = true;
+                _this.getTranslate(_this.translation).then(data => {
+                  _this.completed = data;
+                });
+              } else {
+                _this.goodsTypeList = [];
+                _this.dataType = 1;
+                _this.pageState = true;
+              }
+            } else if (data.mods.grid) {
+              if (data.mods.grid.data) {
+                for (var item of data.mods.grid.data.spus) {
+                  var title = item.title;
+                  for (var tag of item.tag_info) {
+                    title += " " + tag.tag;
+                  }
+                  translationStatistics.push({
+                    index: translationIndex,
+                    text: title
+                  });
+                  item.translationIndex = translationIndex;
+                  translationIndex++;
+                }
+                document.body.scrollTop = 0;
+                _this.translation = translationStatistics;
+                _this.goodsTypeList = data.mods.grid.data.spus;
+                _this.dataType = 1;
+                _this.pageState = true;
+                _this.getTranslate(_this.translation).then(data => {
+                  _this.completed = data;
+                });
+              } else {
+                _this.goodsTypeList = [];
+                _this.dataType = 1;
+                _this.pageState = true;
+              }
+            } else {
+              _this.pageState = false;
+              _this.notFound = true;
+            }
+            if (data.mods.pager.data) {
+              _this.totalPage = data.mods.pager.data.totalPage;
+            }
+          }
+        });
+      }
     },
-    openGoodsLink(index) {
-      var url = '';
+    openGoodsLink(index, item) {
+      var url = "";
       if (this.dataType == 0) {
-        url = 'https://item.taobao.com/item.htm?id=' + this.goodsTypeList[index].nid;
+        if (item.shopcard.isTmall) {
+          url =
+            "https://detail.tmall.com/item.htm?id=" +
+            this.goodsTypeList[index].nid;
+        } else {
+          url ="https://item.taobao.com/item.htm?id=" +
+            this.goodsTypeList[index].nid;
+        }
         openGoodsLink(this, url, true);
       } else {
-        this.$router.push({ path: '/searchList',query:{searchKey:this.goodsTypeList[index].title,state:1} });
+        this.$router.push({
+          path: "/searchList",
+          query: { searchKey: this.goodsTypeList[index].title, state: 1 }
+        });
       }
     },
     screen(sort, psort, state) {
@@ -316,13 +340,13 @@ export default {
         this.psort = psort;
       }
       this.goodsListInfo(1);
-    },
+    }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
-@import '../../style/components/main';
-@import '../../style/goodsList';
+@import "../../style/components/main";
+@import "../../style/goodsList";
 .goods-type-list {
   .search-key {
     overflow: hidden;
@@ -331,17 +355,17 @@ export default {
     width: 100%;
     color: #404040;
     height: 48px;
-    background-color: #FFF;
+    background-color: #fff;
     border: solid 1px #e8e8e8;
     border-collapse: collapse;
     .order-by {
       width: 100%;
       display: flex;
       justify-content: space-between;
-      &>ul {
+      & > ul {
         @include clear;
       }
-      &>ul>li {
+      & > ul > li {
         float: left;
         border: 1px solid transparent;
         border-width: 0 1px;
@@ -357,7 +381,7 @@ export default {
           i {
             @include bindicBg(9px, 46px);
             background-size: 100% auto;
-            background-image: url('../../img/goodsDetails/spxq_icon_xiala.png');
+            background-image: url("../../img/goodsDetails/spxq_icon_xiala.png");
             margin-left: 5px;
           }
         }
@@ -366,18 +390,18 @@ export default {
           border-left-width: 0;
         }
 
-        >ul {
+        > ul {
           position: absolute;
           top: 0px;
           left: 0px;
           display: block;
           z-index: 10;
           padding: 0px 19px;
-          background-color: #FFF;
+          background-color: #fff;
           box-shadow: 0px 0px 20px 0px #ccc;
           border-radius: 3px;
           display: none;
-          >li {
+          > li {
             color: #666;
             height: 46px;
             line-height: 46px;
@@ -397,7 +421,7 @@ export default {
           }
           button {
             background-color: #f50;
-            color: #FFF;
+            color: #fff;
             border: 0px;
             height: 25px;
             padding: 0px 10px;
@@ -420,32 +444,32 @@ export default {
             @include bindicBg(16px,
             46px);
             background-size: 100% auto;
-            background-image: url('../../img/order/gwc_icon_fuxuankuang.png');
+            background-image: url("../../img/order/gwc_icon_fuxuankuang.png");
             margin-right: 10px;
           }
         }
-        >.act {
+        > .act {
           i {
-            background-image: url('../../img/order/gwc_fuxuankuang_pre.png');
+            background-image: url("../../img/order/gwc_fuxuankuang_pre.png");
           }
         }
       }
-      &>ul>li.act,
-      &>ul>li:hover,
-      &>ul>li>ul>li:hover,
-      &>ul>li>ul>li.act {
+      & > ul > li.act,
+      & > ul > li:hover,
+      & > ul > li > ul > li:hover,
+      & > ul > li > ul > li.act {
         background-color: #fff;
         border-color: #e5e5e5;
         color: #f50;
         i {
-          background-image: url('../../img/goodsDetails/sy_nav_icon_xiala_y.png');
+          background-image: url("../../img/goodsDetails/sy_nav_icon_xiala_y.png");
         }
       }
-      &>ul>li:hover>ul {
+      & > ul > li:hover > ul {
         display: block;
       }
-      &>ul>li:hover>.input_box {
-        background-color: #FFF;
+      & > ul > li:hover > .input_box {
+        background-color: #fff;
         box-shadow: 0px 0px 20px 0px #ccc;
         button {
           display: inline-block;

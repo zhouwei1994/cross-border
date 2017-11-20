@@ -61,7 +61,7 @@ export default {
       goodsTypeView: false,
       //滑动配置
       swiperOption: {
-        autoplay: 320000,
+        autoplay: 3000,
         setWrapperSize: true,
         pagination: '.swiper-pagination',
         paginationClickable: true,
